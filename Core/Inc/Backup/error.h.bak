@@ -1,0 +1,23 @@
+#ifndef ERROR_H
+#define ERROR_H
+
+#include "error_utils.h"
+
+extern ERROR_UTILS_HandleTypeDef error_h;
+
+typedef enum {
+  ERROR1,
+  ERROR2,
+  ERROR3,
+  ERROR4,
+  ERRORS_ENUM_N
+} ERRORS_ENUM;
+
+void error_global_toggle(uint32_t error, uint32_t instance);
+
+
+void error_global_expiry(uint32_t error, uint32_t instance);
+
+void error_init();
+
+#endif //ERROR_H

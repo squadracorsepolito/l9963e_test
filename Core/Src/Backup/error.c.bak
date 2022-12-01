@@ -1,0 +1,41 @@
+#include "error.h"
+
+#include "tim.h"
+#include "usart.h"
+
+#include <stdio.h>
+#include <string.h>
+
+ERROR_UTILS_HandleTypeDef error_h;
+
+void error_global_toggle(uint32_t error, uint32_t instance) {
+  //char tx[64];
+  //sprintf(tx, "[%lums] toggle [%lu][%lu]\r\n", HAL_GetTick(), error, instance);
+  //HAL_UART_Transmit(&huart2, (uint8_t*)tx, strlen(tx), 10);
+  return;
+}
+
+
+void error_global_expiry(uint32_t error, uint32_t instance) {
+  char tx[64];
+  sprintf(tx, "[%lums] expired [%lu][%lu]\r\n", HAL_GetTick(), error, instance);
+  HAL_UART_Transmit(&huart2, (uint8_t*)tx, strlen(tx), 10);
+  return;
+}
+
+ERROR_UTILS_ErrorInstanceTypeDef instances[4][1];
+ERROR_UTILS_ErrorTypeDef errors_array[ERRORS_ENUM_N] = {
+[ERROR1] = { .expiry_callback = NULL, .instances_length = 1, .instances = instances[ERROR1], .expiry_delay_ms = 500, .toggle_callback = NULL},
+[ERROR2] = { .expiry_callback = NULL, .instances_length = 1, .instances = instances[ERROR2], .expiry_delay_ms = 1000, .toggle_callback = NULL},
+[ERROR3] = { .expiry_callback = NULL, .instances_length = 1, .instances = instances[ERROR3], .expiry_delay_ms = 1500, .toggle_callback = NULL},
+[ERROR4] = { .expiry_callback = NULL, .instances_length = 1, .instances = instances[ERROR4], .expiry_delay_ms = 2000, .toggle_callback = NULL}
+};
+
+ERROR_UTILS_ConfigTypeDef config = {
+.errors_array = errors_array,
+.errors_length = ERRORS_ENUM_N
+};
+
+void error_init() {
+  ERROR_UTILS_init(&error_h, &htim11, &config, (ERROR_UTILS_CallbackTypeDef)error_global_toggle, (ERROR_UTILS_CallbackTypeDef)error_global_expiry);
+}

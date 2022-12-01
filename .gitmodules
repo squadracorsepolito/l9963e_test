@@ -1,0 +1,3 @@
+[submodule "Core/Lib/L9963E_lib"]
+	path = Core/Lib/L9963E_lib
+	url = https://github.com/squadracorsepolito/L9963E_lib.git
