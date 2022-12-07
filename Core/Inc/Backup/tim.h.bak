@@ -29,13 +29,13 @@ extern "C" {
 #include "main.h"
 
 /* USER CODE BEGIN Includes */
-#include "timebase.h"
+
 /* USER CODE END Includes */
 
 extern TIM_HandleTypeDef htim11;
 
 /* USER CODE BEGIN Private defines */
-extern TIMEBASE_HandleTypeDef hTimebase;
+
 /* USER CODE END Private defines */
 
 void MX_TIM11_Init(void);

@@ -66,6 +66,8 @@ void Error_Handler(void);
 #define GPIO1_GPIO_Port GPIOA
 #define BNE_Pin GPIO_PIN_7
 #define BNE_GPIO_Port GPIOC
+#define TXEN_Pin GPIO_PIN_9
+#define TXEN_GPIO_Port GPIOA
 #define GPIO10_Pin GPIO_PIN_11
 #define GPIO10_GPIO_Port GPIOC
 #define SPI1_CS_Pin GPIO_PIN_6

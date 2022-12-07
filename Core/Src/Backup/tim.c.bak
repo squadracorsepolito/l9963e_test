@@ -21,7 +21,7 @@
 #include "tim.h"
 
 /* USER CODE BEGIN 0 */
-#include "error.h"
+
 /* USER CODE END 0 */
 
 TIM_HandleTypeDef htim11;
@@ -93,11 +93,5 @@ void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* tim_baseHandle)
 }
 
 /* USER CODE BEGIN 1 */
-
-TIMEBASE_HandleTypeDef hTimebase;
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-  ERROR_UTILS_TimerElapsedCallback(&error_h, htim);
-}
-
 
 /* USER CODE END 1 */

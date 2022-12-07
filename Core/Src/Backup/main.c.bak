@@ -26,13 +26,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "error.h"
-#include "timebase.h"
 #include "L9963E.h"
 #include <stdio.h>
 #include "string.h"
-#include "logger.h"
-#include "longcounter.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -130,8 +126,7 @@ int main(void)
 */
 
   L9963E_HandleTypeDef hl9;
-  L9963E_RegisterUnionTypeDef data;
-  L9963E_init(&hl9, &hspi1, SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO10_GPIO_Port, GPIO10_Pin, BNE_GPIO_Port, BNE_Pin);
+  L9963E_init(&hl9, &hspi1, SPI1_CS_GPIO_Port, SPI1_CS_Pin, TXEN_GPIO_Port, TXEN_Pin, BNE_GPIO_Port, BNE_Pin);
 
   /*ERROR_UTILS_error_set(&error_h, 2, 0);
   ERROR_UTILS_error_set(&error_h, 3, 0);*/
@@ -141,25 +136,28 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  volatile uint8_t succeded = 0;
   while (1)
   {
-    L9963E_RegisterUnionTypeDef reg1 = {
-      .DEV_GEN_CFG = {
-        .chip_ID = 1,
-        .iso_freq_sel = 0
-      }
-    };
-    L9963E_RegisterUnionTypeDef reg2 = {
-      .DEV_GEN_CFG = {
-        .chip_ID = 1,
-        .iso_freq_sel = 0
-      }
-    };
-    if(L9963E_reg_read(&hl9, 0x1, DEV_GEN_CFG, &reg1) != HAL_OK) {
-      L9963E_reg_write(&hl9, 0, DEV_GEN_CFG, &reg2);
-    }
+    uint8_t send_flag = GPIO_PIN_SET;
+    send_flag = HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin);
+    if (send_flag == GPIO_PIN_RESET) {
+        // wait for the monitor to goo sleep: by default 32ms (T_SLEEP_00)
+        HAL_Delay(100);  // wait more then necessary
+        // send sboradcast message with chp_ID=first_address(1), isotx_en=1, iso_req_sel=0x00
+        L9963E_RegisterUnionTypeDef reg1 = {.DEV_GEN_CFG = {.chip_ID = 1U, .iso_freq_sel = 0U, .isotx_en_h = 1U}};
+        L9963E_RegisterUnionTypeDef reg2 = {.DEV_GEN_CFG = {.chip_ID = 1U, .iso_freq_sel = 0U}};
+        
+        L9963E_wakeup(&hl9);
+        // by default the wakup procedure nees 2 ms of time (T_WAKEUP)
+        HAL_Delay(2);
 
-    //HAL_Delay(100);
+        L9963E_reg_write(&hl9, 0, DEV_GEN_CFG, &reg1);
+        if (L9963E_reg_read(&hl9, 0x1, DEV_GEN_CFG, &reg1) == HAL_OK) {
+          succeded = 1;
+        }
+        send_flag = GPIO_PIN_RESET;
+    }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
