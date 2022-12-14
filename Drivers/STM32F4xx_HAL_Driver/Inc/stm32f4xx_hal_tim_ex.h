@@ -261,24 +261,19 @@ HAL_StatusTypeDef HAL_TIMEx_OnePulseN_Stop_IT(TIM_HandleTypeDef *htim, uint32_t 
   * @{
   */
 /* Extended Control functions  ************************************************/
-HAL_StatusTypeDef HAL_TIMEx_ConfigCommutEvent(
-    TIM_HandleTypeDef *htim,
-    uint32_t InputTrigger,
-    uint32_t CommutationSource);
-HAL_StatusTypeDef HAL_TIMEx_ConfigCommutEvent_IT(
-    TIM_HandleTypeDef *htim,
-    uint32_t InputTrigger,
-    uint32_t CommutationSource);
-HAL_StatusTypeDef HAL_TIMEx_ConfigCommutEvent_DMA(
-    TIM_HandleTypeDef *htim,
-    uint32_t InputTrigger,
-    uint32_t CommutationSource);
-HAL_StatusTypeDef HAL_TIMEx_MasterConfigSynchronization(
-    TIM_HandleTypeDef *htim,
-    TIM_MasterConfigTypeDef *sMasterConfig);
-HAL_StatusTypeDef HAL_TIMEx_ConfigBreakDeadTime(
-    TIM_HandleTypeDef *htim,
-    TIM_BreakDeadTimeConfigTypeDef *sBreakDeadTimeConfig);
+HAL_StatusTypeDef HAL_TIMEx_ConfigCommutEvent(TIM_HandleTypeDef *htim,
+                                              uint32_t InputTrigger,
+                                              uint32_t CommutationSource);
+HAL_StatusTypeDef HAL_TIMEx_ConfigCommutEvent_IT(TIM_HandleTypeDef *htim,
+                                                 uint32_t InputTrigger,
+                                                 uint32_t CommutationSource);
+HAL_StatusTypeDef HAL_TIMEx_ConfigCommutEvent_DMA(TIM_HandleTypeDef *htim,
+                                                  uint32_t InputTrigger,
+                                                  uint32_t CommutationSource);
+HAL_StatusTypeDef HAL_TIMEx_MasterConfigSynchronization(TIM_HandleTypeDef *htim,
+                                                        TIM_MasterConfigTypeDef *sMasterConfig);
+HAL_StatusTypeDef HAL_TIMEx_ConfigBreakDeadTime(TIM_HandleTypeDef *htim,
+                                                TIM_BreakDeadTimeConfigTypeDef *sBreakDeadTimeConfig);
 HAL_StatusTypeDef HAL_TIMEx_RemapConfig(TIM_HandleTypeDef *htim, uint32_t Remap);
 /**
   * @}

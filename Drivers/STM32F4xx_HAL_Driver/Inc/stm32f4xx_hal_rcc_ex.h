@@ -5965,11 +5965,10 @@ typedef struct {
             STM32F412Zx/STM32F412Vx/STM32F412Rx/STM32F412Cx/STM32F413xx/STM32F423xx devices.
   *      
   */
-#define __HAL_RCC_PLL_CONFIG(__RCC_PLLSource__, __PLLM__, __PLLN__, __PLLP__, __PLLQ__, __PLLR__)      \
-    (RCC->PLLCFGR =                                                                                    \
-         ((__RCC_PLLSource__) | (__PLLM__) | ((__PLLN__) << RCC_PLLCFGR_PLLN_Pos) |                    \
-          ((((__PLLP__) >> 1U) - 1U) << RCC_PLLCFGR_PLLP_Pos) | ((__PLLQ__) << RCC_PLLCFGR_PLLQ_Pos) | \
-          ((__PLLR__) << RCC_PLLCFGR_PLLR_Pos)))
+#define __HAL_RCC_PLL_CONFIG(__RCC_PLLSource__, __PLLM__, __PLLN__, __PLLP__, __PLLQ__, __PLLR__)                 \
+    (RCC->PLLCFGR = ((__RCC_PLLSource__) | (__PLLM__) | ((__PLLN__) << RCC_PLLCFGR_PLLN_Pos) |                    \
+                     ((((__PLLP__) >> 1U) - 1U) << RCC_PLLCFGR_PLLP_Pos) | ((__PLLQ__) << RCC_PLLCFGR_PLLQ_Pos) | \
+                     ((__PLLR__) << RCC_PLLCFGR_PLLR_Pos)))
 #else
 /** @brief  Macro to configure the main PLL clock source, multiplication and division factors.
   * @note   This function must be used only when the main PLL is disabled.
@@ -6000,10 +5999,9 @@ typedef struct {
   *         correctly.
   *      
   */
-#define __HAL_RCC_PLL_CONFIG(__RCC_PLLSource__, __PLLM__, __PLLN__, __PLLP__, __PLLQ__)           \
-    (RCC->PLLCFGR =                                                                               \
-         (0x20000000U | (__RCC_PLLSource__) | (__PLLM__) | ((__PLLN__) << RCC_PLLCFGR_PLLN_Pos) | \
-          ((((__PLLP__) >> 1U) - 1U) << RCC_PLLCFGR_PLLP_Pos) | ((__PLLQ__) << RCC_PLLCFGR_PLLQ_Pos)))
+#define __HAL_RCC_PLL_CONFIG(__RCC_PLLSource__, __PLLM__, __PLLN__, __PLLP__, __PLLQ__)                      \
+    (RCC->PLLCFGR = (0x20000000U | (__RCC_PLLSource__) | (__PLLM__) | ((__PLLN__) << RCC_PLLCFGR_PLLN_Pos) | \
+                     ((((__PLLP__) >> 1U) - 1U) << RCC_PLLCFGR_PLLP_Pos) | ((__PLLQ__) << RCC_PLLCFGR_PLLQ_Pos)))
 #endif /* STM32F410xx || STM32F446xx || STM32F469xx || STM32F479xx || STM32F412Zx || STM32F412Vx || STM32F412Rx || STM32F412Cx */
 /*----------------------------------------------------------------------------*/
 
@@ -6052,10 +6050,10 @@ typedef struct {
   *         This parameter must be a number between Min_Data = 2 and Max_Data = 15.
   */
 #define __HAL_RCC_PLLI2S_CONFIG(__PLLI2SM__, __PLLI2SN__, __PLLI2SP__, __PLLI2SQ__, __PLLI2SR__) \
-    (RCC->PLLI2SCFGR =                                                                           \
-         ((__PLLI2SM__) | ((__PLLI2SN__) << RCC_PLLI2SCFGR_PLLI2SN_Pos) |                        \
-          ((((__PLLI2SP__) >> 1U) - 1U) << RCC_PLLI2SCFGR_PLLI2SP_Pos) |                         \
-          ((__PLLI2SQ__) << RCC_PLLI2SCFGR_PLLI2SQ_Pos) | ((__PLLI2SR__) << RCC_PLLI2SCFGR_PLLI2SR_Pos)))
+    (RCC->PLLI2SCFGR = ((__PLLI2SM__) | ((__PLLI2SN__) << RCC_PLLI2SCFGR_PLLI2SN_Pos) |          \
+                        ((((__PLLI2SP__) >> 1U) - 1U) << RCC_PLLI2SCFGR_PLLI2SP_Pos) |           \
+                        ((__PLLI2SQ__) << RCC_PLLI2SCFGR_PLLI2SQ_Pos) |                          \
+                        ((__PLLI2SR__) << RCC_PLLI2SCFGR_PLLI2SR_Pos)))
 #elif defined(STM32F412Zx) || defined(STM32F412Vx) || defined(STM32F412Rx) || defined(STM32F412Cx) || \
     defined(STM32F413xx) || defined(STM32F423xx)
 /** @brief  Macro to configure the PLLI2S clock multiplication and division factors .
@@ -6081,10 +6079,10 @@ typedef struct {
   * @param  __PLLI2SQ__ specifies the division factor for SAI clock
   *         This parameter must be a number between Min_Data = 2 and Max_Data = 15.
   */
-#define __HAL_RCC_PLLI2S_CONFIG(__PLLI2SM__, __PLLI2SN__, __PLLI2SQ__, __PLLI2SR__) \
-    (RCC->PLLI2SCFGR =                                                              \
-         ((__PLLI2SM__) | ((__PLLI2SN__) << RCC_PLLI2SCFGR_PLLI2SN_Pos) |           \
-          ((__PLLI2SQ__) << RCC_PLLI2SCFGR_PLLI2SQ_Pos) | ((__PLLI2SR__) << RCC_PLLI2SCFGR_PLLI2SR_Pos)))
+#define __HAL_RCC_PLLI2S_CONFIG(__PLLI2SM__, __PLLI2SN__, __PLLI2SQ__, __PLLI2SR__)     \
+    (RCC->PLLI2SCFGR = ((__PLLI2SM__) | ((__PLLI2SN__) << RCC_PLLI2SCFGR_PLLI2SN_Pos) | \
+                        ((__PLLI2SQ__) << RCC_PLLI2SCFGR_PLLI2SQ_Pos) |                 \
+                        ((__PLLI2SR__) << RCC_PLLI2SCFGR_PLLI2SR_Pos)))
 #else
 /** @brief  Macro to configure the PLLI2S clock multiplication and division factors .
   * @note   This macro must be used only when the PLLI2S is disabled.
@@ -6126,10 +6124,9 @@ typedef struct {
   * @note   You have to set the PLLI2SR parameter correctly to not exceed 192 MHz
   *         on the I2S clock frequency.
   */
-#define __HAL_RCC_PLLI2S_I2SCLK_CONFIG(__PLLI2SM__, __PLLI2SN__, __PLLI2SR__) \
-    (RCC->PLLI2SCFGR =                                                        \
-         ((__PLLI2SM__) | ((__PLLI2SN__) << RCC_PLLI2SCFGR_PLLI2SN_Pos) |     \
-          ((__PLLI2SR__) << RCC_PLLI2SCFGR_PLLI2SR_Pos)))
+#define __HAL_RCC_PLLI2S_I2SCLK_CONFIG(__PLLI2SM__, __PLLI2SN__, __PLLI2SR__)           \
+    (RCC->PLLI2SCFGR = ((__PLLI2SM__) | ((__PLLI2SN__) << RCC_PLLI2SCFGR_PLLI2SN_Pos) | \
+                        ((__PLLI2SR__) << RCC_PLLI2SCFGR_PLLI2SR_Pos)))
 #endif /* STM32F411xE */
 
 #if defined(STM32F427xx) || defined(STM32F437xx) || defined(STM32F429xx) || defined(STM32F439xx) || \
@@ -6193,10 +6190,9 @@ typedef struct {
   * @note   the PLLI2SR parameter is only available with STM32F427/437/429/439xx Devices  
   */
 #define __HAL_RCC_PLLSAI_CONFIG(__PLLSAIM__, __PLLSAIN__, __PLLSAIP__, __PLLSAIQ__, __PLLSAIR__) \
-    (RCC->PLLSAICFGR =                                                                           \
-         ((__PLLSAIM__) | ((__PLLSAIN__) << RCC_PLLSAICFGR_PLLSAIN_Pos) |                        \
-          ((((__PLLSAIP__) >> 1U) - 1U) << RCC_PLLSAICFGR_PLLSAIP_Pos) |                         \
-          ((__PLLSAIQ__) << RCC_PLLSAICFGR_PLLSAIQ_Pos)))
+    (RCC->PLLSAICFGR = ((__PLLSAIM__) | ((__PLLSAIN__) << RCC_PLLSAICFGR_PLLSAIN_Pos) |          \
+                        ((((__PLLSAIP__) >> 1U) - 1U) << RCC_PLLSAICFGR_PLLSAIP_Pos) |           \
+                        ((__PLLSAIQ__) << RCC_PLLSAICFGR_PLLSAIQ_Pos)))
 #endif /* STM32F446xx */
 
 #if defined(STM32F469xx) || defined(STM32F479xx)
@@ -6216,11 +6212,11 @@ typedef struct {
   * @param  __PLLSAIR__ specifies the division factor for LTDC clock
   *         This parameter must be a number between Min_Data = 2 and Max_Data = 7.  
   */
-#define __HAL_RCC_PLLSAI_CONFIG(__PLLSAIN__, __PLLSAIP__, __PLLSAIQ__, __PLLSAIR__) \
-    (RCC->PLLSAICFGR =                                                              \
-         (((__PLLSAIN__) << RCC_PLLSAICFGR_PLLSAIN_Pos) |                           \
-          ((((__PLLSAIP__) >> 1U) - 1U) << RCC_PLLSAICFGR_PLLSAIP_Pos) |            \
-          ((__PLLSAIQ__) << RCC_PLLSAICFGR_PLLSAIQ_Pos) | ((__PLLSAIR__) << RCC_PLLSAICFGR_PLLSAIR_Pos)))
+#define __HAL_RCC_PLLSAI_CONFIG(__PLLSAIN__, __PLLSAIP__, __PLLSAIQ__, __PLLSAIR__)    \
+    (RCC->PLLSAICFGR = (((__PLLSAIN__) << RCC_PLLSAICFGR_PLLSAIN_Pos) |                \
+                        ((((__PLLSAIP__) >> 1U) - 1U) << RCC_PLLSAICFGR_PLLSAIP_Pos) | \
+                        ((__PLLSAIQ__) << RCC_PLLSAICFGR_PLLSAIQ_Pos) |                \
+                        ((__PLLSAIR__) << RCC_PLLSAICFGR_PLLSAIR_Pos)))
 #endif /* STM32F469xx || STM32F479xx */
 
 #if defined(STM32F427xx) || defined(STM32F437xx) || defined(STM32F429xx) || defined(STM32F439xx)
@@ -6238,10 +6234,10 @@ typedef struct {
   *         This parameter must be a number between Min_Data = 2 and Max_Data = 7.
   * @note   the PLLI2SR parameter is only available with STM32F427/437/429/439xx Devices  
   */
-#define __HAL_RCC_PLLSAI_CONFIG(__PLLSAIN__, __PLLSAIQ__, __PLLSAIR__)                                    \
-    (RCC->PLLSAICFGR =                                                                                    \
-         (((__PLLSAIN__) << RCC_PLLSAICFGR_PLLSAIN_Pos) | ((__PLLSAIQ__) << RCC_PLLSAICFGR_PLLSAIQ_Pos) | \
-          ((__PLLSAIR__) << RCC_PLLSAICFGR_PLLSAIR_Pos)))
+#define __HAL_RCC_PLLSAI_CONFIG(__PLLSAIN__, __PLLSAIQ__, __PLLSAIR__)  \
+    (RCC->PLLSAICFGR = (((__PLLSAIN__) << RCC_PLLSAICFGR_PLLSAIN_Pos) | \
+                        ((__PLLSAIQ__) << RCC_PLLSAICFGR_PLLSAIQ_Pos) | \
+                        ((__PLLSAIR__) << RCC_PLLSAICFGR_PLLSAIR_Pos)))
 #endif /* STM32F427xx || STM32F437xx || STM32F429xx || STM32F439xx */
 
 #endif /* STM32F427xx || STM32F437xx || STM32F429xx || STM32F439xx || STM32F446xx || STM32F469xx || STM32F479xx */

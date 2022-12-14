@@ -1237,8 +1237,9 @@ __STATIC_INLINE void __NVIC_EnableIRQ(IRQn_Type IRQn) {
  */
 __STATIC_INLINE uint32_t __NVIC_GetEnableIRQ(IRQn_Type IRQn) {
     if ((int32_t)(IRQn) >= 0) {
-        return ((
-            uint32_t)(((NVIC->ISER[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL));
+        return ((uint32_t)(((NVIC->ISER[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL)
+                               ? 1UL
+                               : 0UL));
     } else {
         return (0U);
     }
@@ -1268,8 +1269,9 @@ __STATIC_INLINE void __NVIC_DisableIRQ(IRQn_Type IRQn) {
  */
 __STATIC_INLINE uint32_t __NVIC_GetPendingIRQ(IRQn_Type IRQn) {
     if ((int32_t)(IRQn) >= 0) {
-        return ((
-            uint32_t)(((NVIC->ISPR[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL));
+        return ((uint32_t)(((NVIC->ISPR[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL)
+                               ? 1UL
+                               : 0UL));
     } else {
         return (0U);
     }
@@ -1309,8 +1311,9 @@ __STATIC_INLINE void __NVIC_ClearPendingIRQ(IRQn_Type IRQn) {
  */
 __STATIC_INLINE uint32_t __NVIC_GetActive(IRQn_Type IRQn) {
     if ((int32_t)(IRQn) >= 0) {
-        return ((
-            uint32_t)(((NVIC->IABR[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL));
+        return ((uint32_t)(((NVIC->IABR[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL)
+                               ? 1UL
+                               : 0UL));
     } else {
         return (0U);
     }
@@ -1327,8 +1330,9 @@ __STATIC_INLINE uint32_t __NVIC_GetActive(IRQn_Type IRQn) {
  */
 __STATIC_INLINE uint32_t NVIC_GetTargetState(IRQn_Type IRQn) {
     if ((int32_t)(IRQn) >= 0) {
-        return ((
-            uint32_t)(((NVIC->ITNS[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL));
+        return ((uint32_t)(((NVIC->ITNS[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL)
+                               ? 1UL
+                               : 0UL));
     } else {
         return (0U);
     }
@@ -1345,8 +1349,9 @@ __STATIC_INLINE uint32_t NVIC_GetTargetState(IRQn_Type IRQn) {
 __STATIC_INLINE uint32_t NVIC_SetTargetState(IRQn_Type IRQn) {
     if ((int32_t)(IRQn) >= 0) {
         NVIC->ITNS[(((uint32_t)IRQn) >> 5UL)] |= ((uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL)));
-        return ((
-            uint32_t)(((NVIC->ITNS[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL));
+        return ((uint32_t)(((NVIC->ITNS[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL)
+                               ? 1UL
+                               : 0UL));
     } else {
         return (0U);
     }
@@ -1363,8 +1368,9 @@ __STATIC_INLINE uint32_t NVIC_SetTargetState(IRQn_Type IRQn) {
 __STATIC_INLINE uint32_t NVIC_ClearTargetState(IRQn_Type IRQn) {
     if ((int32_t)(IRQn) >= 0) {
         NVIC->ITNS[(((uint32_t)IRQn) >> 5UL)] &= ~((uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL)));
-        return ((
-            uint32_t)(((NVIC->ITNS[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL));
+        return ((uint32_t)(((NVIC->ITNS[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL)
+                               ? 1UL
+                               : 0UL));
     } else {
         return (0U);
     }
@@ -1382,13 +1388,11 @@ __STATIC_INLINE uint32_t NVIC_ClearTargetState(IRQn_Type IRQn) {
  */
 __STATIC_INLINE void __NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority) {
     if ((int32_t)(IRQn) >= 0) {
-        NVIC->IPR[_IP_IDX(IRQn)] =
-            ((uint32_t)(NVIC->IPR[_IP_IDX(IRQn)] & ~(0xFFUL << _BIT_SHIFT(IRQn))) |
-             (((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL) << _BIT_SHIFT(IRQn)));
+        NVIC->IPR[_IP_IDX(IRQn)] = ((uint32_t)(NVIC->IPR[_IP_IDX(IRQn)] & ~(0xFFUL << _BIT_SHIFT(IRQn))) |
+                                    (((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL) << _BIT_SHIFT(IRQn)));
     } else {
-        SCB->SHPR[_SHP_IDX(IRQn)] =
-            ((uint32_t)(SCB->SHPR[_SHP_IDX(IRQn)] & ~(0xFFUL << _BIT_SHIFT(IRQn))) |
-             (((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL) << _BIT_SHIFT(IRQn)));
+        SCB->SHPR[_SHP_IDX(IRQn)] = ((uint32_t)(SCB->SHPR[_SHP_IDX(IRQn)] & ~(0xFFUL << _BIT_SHIFT(IRQn))) |
+                                     (((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL) << _BIT_SHIFT(IRQn)));
     }
 }
 
@@ -1406,8 +1410,8 @@ __STATIC_INLINE uint32_t __NVIC_GetPriority(IRQn_Type IRQn) {
         return (
             (uint32_t)(((NVIC->IPR[_IP_IDX(IRQn)] >> _BIT_SHIFT(IRQn)) & (uint32_t)0xFFUL) >> (8U - __NVIC_PRIO_BITS)));
     } else {
-        return ((
-            uint32_t)(((SCB->SHPR[_SHP_IDX(IRQn)] >> _BIT_SHIFT(IRQn)) & (uint32_t)0xFFUL) >> (8U - __NVIC_PRIO_BITS)));
+        return ((uint32_t)(((SCB->SHPR[_SHP_IDX(IRQn)] >> _BIT_SHIFT(IRQn)) & (uint32_t)0xFFUL) >>
+                           (8U - __NVIC_PRIO_BITS)));
     }
 }
 
@@ -1434,9 +1438,8 @@ __STATIC_INLINE uint32_t NVIC_EncodePriority(uint32_t PriorityGroup, uint32_t Pr
                               ? (uint32_t)0UL
                               : (uint32_t)((PriorityGroupTmp - 7UL) + (uint32_t)(__NVIC_PRIO_BITS));
 
-    return (
-        ((PreemptPriority & (uint32_t)((1UL << (PreemptPriorityBits)) - 1UL)) << SubPriorityBits) |
-        ((SubPriority & (uint32_t)((1UL << (SubPriorityBits)) - 1UL))));
+    return (((PreemptPriority & (uint32_t)((1UL << (PreemptPriorityBits)) - 1UL)) << SubPriorityBits) |
+            ((SubPriority & (uint32_t)((1UL << (SubPriorityBits)) - 1UL))));
 }
 
 /**
@@ -1450,11 +1453,10 @@ __STATIC_INLINE uint32_t NVIC_EncodePriority(uint32_t PriorityGroup, uint32_t Pr
   \param [out] pPreemptPriority  Preemptive priority value (starting from 0).
   \param [out]     pSubPriority  Subpriority value (starting from 0).
  */
-__STATIC_INLINE void NVIC_DecodePriority(
-    uint32_t Priority,
-    uint32_t PriorityGroup,
-    uint32_t *const pPreemptPriority,
-    uint32_t *const pSubPriority) {
+__STATIC_INLINE void NVIC_DecodePriority(uint32_t Priority,
+                                         uint32_t PriorityGroup,
+                                         uint32_t *const pPreemptPriority,
+                                         uint32_t *const pSubPriority) {
     uint32_t PriorityGroupTmp = (PriorityGroup & (uint32_t)0x07UL); /* only values 0..7 are used          */
     uint32_t PreemptPriorityBits;
     uint32_t SubPriorityBits;
@@ -1545,8 +1547,9 @@ __STATIC_INLINE void TZ_NVIC_EnableIRQ_NS(IRQn_Type IRQn) {
  */
 __STATIC_INLINE uint32_t TZ_NVIC_GetEnableIRQ_NS(IRQn_Type IRQn) {
     if ((int32_t)(IRQn) >= 0) {
-        return ((
-            uint32_t)(((NVIC_NS->ISER[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL));
+        return ((uint32_t)(((NVIC_NS->ISER[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL)
+                               ? 1UL
+                               : 0UL));
     } else {
         return (0U);
     }
@@ -1574,8 +1577,9 @@ __STATIC_INLINE void TZ_NVIC_DisableIRQ_NS(IRQn_Type IRQn) {
  */
 __STATIC_INLINE uint32_t TZ_NVIC_GetPendingIRQ_NS(IRQn_Type IRQn) {
     if ((int32_t)(IRQn) >= 0) {
-        return ((
-            uint32_t)(((NVIC_NS->ISPR[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL));
+        return ((uint32_t)(((NVIC_NS->ISPR[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL)
+                               ? 1UL
+                               : 0UL));
     } else {
         return (0U);
     }
@@ -1615,8 +1619,9 @@ __STATIC_INLINE void TZ_NVIC_ClearPendingIRQ_NS(IRQn_Type IRQn) {
  */
 __STATIC_INLINE uint32_t TZ_NVIC_GetActive_NS(IRQn_Type IRQn) {
     if ((int32_t)(IRQn) >= 0) {
-        return ((
-            uint32_t)(((NVIC_NS->IABR[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL));
+        return ((uint32_t)(((NVIC_NS->IABR[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL)
+                               ? 1UL
+                               : 0UL));
     } else {
         return (0U);
     }
@@ -1653,11 +1658,11 @@ __STATIC_INLINE void TZ_NVIC_SetPriority_NS(IRQn_Type IRQn, uint32_t priority) {
  */
 __STATIC_INLINE uint32_t TZ_NVIC_GetPriority_NS(IRQn_Type IRQn) {
     if ((int32_t)(IRQn) >= 0) {
-        return ((
-            uint32_t)(((NVIC_NS->IPR[_IP_IDX(IRQn)] >> _BIT_SHIFT(IRQn)) & (uint32_t)0xFFUL) >> (8U - __NVIC_PRIO_BITS)));
+        return ((uint32_t)(((NVIC_NS->IPR[_IP_IDX(IRQn)] >> _BIT_SHIFT(IRQn)) & (uint32_t)0xFFUL) >>
+                           (8U - __NVIC_PRIO_BITS)));
     } else {
-        return ((
-            uint32_t)(((SCB_NS->SHPR[_SHP_IDX(IRQn)] >> _BIT_SHIFT(IRQn)) & (uint32_t)0xFFUL) >> (8U - __NVIC_PRIO_BITS)));
+        return ((uint32_t)(((SCB_NS->SHPR[_SHP_IDX(IRQn)] >> _BIT_SHIFT(IRQn)) & (uint32_t)0xFFUL) >>
+                           (8U - __NVIC_PRIO_BITS)));
     }
 }
 #endif /*  defined (__ARM_FEATURE_CMSE) &&(__ARM_FEATURE_CMSE == 3U) */

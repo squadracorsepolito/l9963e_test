@@ -236,12 +236,11 @@ static void SPI_DMAError(DMA_HandleTypeDef *hdma);
 static void SPI_DMAAbortOnError(DMA_HandleTypeDef *hdma);
 static void SPI_DMATxAbortCallback(DMA_HandleTypeDef *hdma);
 static void SPI_DMARxAbortCallback(DMA_HandleTypeDef *hdma);
-static HAL_StatusTypeDef SPI_WaitFlagStateUntilTimeout(
-    SPI_HandleTypeDef *hspi,
-    uint32_t Flag,
-    FlagStatus State,
-    uint32_t Timeout,
-    uint32_t Tickstart);
+static HAL_StatusTypeDef SPI_WaitFlagStateUntilTimeout(SPI_HandleTypeDef *hspi,
+                                                       uint32_t Flag,
+                                                       FlagStatus State,
+                                                       uint32_t Timeout,
+                                                       uint32_t Tickstart);
 static void SPI_TxISR_8BIT(struct __SPI_HandleTypeDef *hspi);
 static void SPI_TxISR_16BIT(struct __SPI_HandleTypeDef *hspi);
 static void SPI_RxISR_8BIT(struct __SPI_HandleTypeDef *hspi);
@@ -388,13 +387,12 @@ HAL_StatusTypeDef HAL_SPI_Init(SPI_HandleTypeDef *hspi) {
     /*----------------------- SPIx CR1 & CR2 Configuration ---------------------*/
     /* Configure : SPI Mode, Communication Mode, Data size, Clock polarity and phase, NSS management,
   Communication speed, First bit and CRC calculation state */
-    WRITE_REG(
-        hspi->Instance->CR1,
-        ((hspi->Init.Mode & (SPI_CR1_MSTR | SPI_CR1_SSI)) |
-         (hspi->Init.Direction & (SPI_CR1_RXONLY | SPI_CR1_BIDIMODE)) | (hspi->Init.DataSize & SPI_CR1_DFF) |
-         (hspi->Init.CLKPolarity & SPI_CR1_CPOL) | (hspi->Init.CLKPhase & SPI_CR1_CPHA) |
-         (hspi->Init.NSS & SPI_CR1_SSM) | (hspi->Init.BaudRatePrescaler & SPI_CR1_BR_Msk) |
-         (hspi->Init.FirstBit & SPI_CR1_LSBFIRST) | (hspi->Init.CRCCalculation & SPI_CR1_CRCEN)));
+    WRITE_REG(hspi->Instance->CR1,
+              ((hspi->Init.Mode & (SPI_CR1_MSTR | SPI_CR1_SSI)) |
+               (hspi->Init.Direction & (SPI_CR1_RXONLY | SPI_CR1_BIDIMODE)) | (hspi->Init.DataSize & SPI_CR1_DFF) |
+               (hspi->Init.CLKPolarity & SPI_CR1_CPOL) | (hspi->Init.CLKPhase & SPI_CR1_CPHA) |
+               (hspi->Init.NSS & SPI_CR1_SSM) | (hspi->Init.BaudRatePrescaler & SPI_CR1_BR_Msk) |
+               (hspi->Init.FirstBit & SPI_CR1_LSBFIRST) | (hspi->Init.CRCCalculation & SPI_CR1_CRCEN)));
 
     /* Configure : NSS management, TI Mode */
     WRITE_REG(hspi->Instance->CR2, (((hspi->Init.NSS >> 16U) & SPI_CR2_SSOE) | (hspi->Init.TIMode & SPI_CR2_FRF)));
@@ -499,10 +497,9 @@ __weak void HAL_SPI_MspDeInit(SPI_HandleTypeDef *hspi) {
   * @param  pCallback pointer to the Callback function
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_SPI_RegisterCallback(
-    SPI_HandleTypeDef *hspi,
-    HAL_SPI_CallbackIDTypeDef CallbackID,
-    pSPI_CallbackTypeDef pCallback) {
+HAL_StatusTypeDef HAL_SPI_RegisterCallback(SPI_HandleTypeDef *hspi,
+                                           HAL_SPI_CallbackIDTypeDef CallbackID,
+                                           pSPI_CallbackTypeDef pCallback) {
     HAL_StatusTypeDef status = HAL_OK;
 
     if (pCallback == NULL) {
@@ -1047,12 +1044,11 @@ error:
   * @param  Timeout Timeout duration
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_SPI_TransmitReceive(
-    SPI_HandleTypeDef *hspi,
-    uint8_t *pTxData,
-    uint8_t *pRxData,
-    uint16_t Size,
-    uint32_t Timeout) {
+HAL_StatusTypeDef HAL_SPI_TransmitReceive(SPI_HandleTypeDef *hspi,
+                                          uint8_t *pTxData,
+                                          uint8_t *pRxData,
+                                          uint16_t Size,
+                                          uint32_t Timeout) {
     uint16_t initial_TxXferCount;
     uint32_t tmp_mode;
     HAL_SPI_StateTypeDef tmp_state;
@@ -1410,11 +1406,10 @@ error:
   * @param  Size amount of data to be sent and received
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_SPI_TransmitReceive_IT(
-    SPI_HandleTypeDef *hspi,
-    uint8_t *pTxData,
-    uint8_t *pRxData,
-    uint16_t Size) {
+HAL_StatusTypeDef HAL_SPI_TransmitReceive_IT(SPI_HandleTypeDef *hspi,
+                                             uint8_t *pTxData,
+                                             uint8_t *pRxData,
+                                             uint16_t Size) {
     uint32_t tmp_mode;
     HAL_SPI_StateTypeDef tmp_state;
     HAL_StatusTypeDef errorcode = HAL_OK;
@@ -1702,11 +1697,10 @@ error:
   * @param  Size amount of data to be sent
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_SPI_TransmitReceive_DMA(
-    SPI_HandleTypeDef *hspi,
-    uint8_t *pTxData,
-    uint8_t *pRxData,
-    uint16_t Size) {
+HAL_StatusTypeDef HAL_SPI_TransmitReceive_DMA(SPI_HandleTypeDef *hspi,
+                                              uint8_t *pTxData,
+                                              uint8_t *pRxData,
+                                              uint16_t Size) {
     uint32_t tmp_mode;
     HAL_SPI_StateTypeDef tmp_state;
     HAL_StatusTypeDef errorcode = HAL_OK;
@@ -3184,12 +3178,11 @@ static void SPI_TxISR_16BIT(struct __SPI_HandleTypeDef *hspi) {
   * @param  Tickstart tick start value
   * @retval HAL status
   */
-static HAL_StatusTypeDef SPI_WaitFlagStateUntilTimeout(
-    SPI_HandleTypeDef *hspi,
-    uint32_t Flag,
-    FlagStatus State,
-    uint32_t Timeout,
-    uint32_t Tickstart) {
+static HAL_StatusTypeDef SPI_WaitFlagStateUntilTimeout(SPI_HandleTypeDef *hspi,
+                                                       uint32_t Flag,
+                                                       FlagStatus State,
+                                                       uint32_t Timeout,
+                                                       uint32_t Tickstart) {
     __IO uint32_t count;
     uint32_t tmp_timeout;
     uint32_t tmp_tickstart;

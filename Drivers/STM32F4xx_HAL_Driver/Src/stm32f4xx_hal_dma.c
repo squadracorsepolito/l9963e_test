@@ -222,9 +222,9 @@ HAL_StatusTypeDef HAL_DMA_Init(DMA_HandleTypeDef *hdma) {
     tmp = hdma->Instance->CR;
 
     /* Clear CHSEL, MBURST, PBURST, PL, MSIZE, PSIZE, MINC, PINC, CIRC, DIR, CT and DBM bits */
-    tmp &= ((uint32_t) ~(
-        DMA_SxCR_CHSEL | DMA_SxCR_MBURST | DMA_SxCR_PBURST | DMA_SxCR_PL | DMA_SxCR_MSIZE | DMA_SxCR_PSIZE |
-        DMA_SxCR_MINC | DMA_SxCR_PINC | DMA_SxCR_CIRC | DMA_SxCR_DIR | DMA_SxCR_CT | DMA_SxCR_DBM));
+    tmp &= ((uint32_t) ~(DMA_SxCR_CHSEL | DMA_SxCR_MBURST | DMA_SxCR_PBURST | DMA_SxCR_PL | DMA_SxCR_MSIZE |
+                         DMA_SxCR_PSIZE | DMA_SxCR_MINC | DMA_SxCR_PINC | DMA_SxCR_CIRC | DMA_SxCR_DIR | DMA_SxCR_CT |
+                         DMA_SxCR_DBM));
 
     /* Prepare the DMA Stream configuration */
     tmp |= hdma->Init.Channel | hdma->Init.Direction | hdma->Init.PeriphInc | hdma->Init.MemInc |
@@ -388,11 +388,10 @@ HAL_StatusTypeDef HAL_DMA_DeInit(DMA_HandleTypeDef *hdma) {
   * @param  DataLength The length of data to be transferred from source to destination
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_DMA_Start(
-    DMA_HandleTypeDef *hdma,
-    uint32_t SrcAddress,
-    uint32_t DstAddress,
-    uint32_t DataLength) {
+HAL_StatusTypeDef HAL_DMA_Start(DMA_HandleTypeDef *hdma,
+                                uint32_t SrcAddress,
+                                uint32_t DstAddress,
+                                uint32_t DataLength) {
     HAL_StatusTypeDef status = HAL_OK;
 
     /* Check the parameters */
@@ -432,11 +431,10 @@ HAL_StatusTypeDef HAL_DMA_Start(
   * @param  DataLength The length of data to be transferred from source to destination
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_DMA_Start_IT(
-    DMA_HandleTypeDef *hdma,
-    uint32_t SrcAddress,
-    uint32_t DstAddress,
-    uint32_t DataLength) {
+HAL_StatusTypeDef HAL_DMA_Start_IT(DMA_HandleTypeDef *hdma,
+                                   uint32_t SrcAddress,
+                                   uint32_t DstAddress,
+                                   uint32_t DataLength) {
     HAL_StatusTypeDef status = HAL_OK;
 
     /* calculate DMA base and stream number */
@@ -579,10 +577,9 @@ HAL_StatusTypeDef HAL_DMA_Abort_IT(DMA_HandleTypeDef *hdma) {
   * @param  Timeout       Timeout duration.
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_DMA_PollForTransfer(
-    DMA_HandleTypeDef *hdma,
-    HAL_DMA_LevelCompleteTypeDef CompleteLevel,
-    uint32_t Timeout) {
+HAL_StatusTypeDef HAL_DMA_PollForTransfer(DMA_HandleTypeDef *hdma,
+                                          HAL_DMA_LevelCompleteTypeDef CompleteLevel,
+                                          uint32_t Timeout) {
     HAL_StatusTypeDef status = HAL_OK;
     uint32_t mask_cpltlevel;
     uint32_t tickstart = HAL_GetTick();
@@ -885,10 +882,9 @@ void HAL_DMA_IRQHandler(DMA_HandleTypeDef *hdma) {
   *                               a DMA_HandleTypeDef structure as parameter.
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_DMA_RegisterCallback(
-    DMA_HandleTypeDef *hdma,
-    HAL_DMA_CallbackIDTypeDef CallbackID,
-    void (*pCallback)(DMA_HandleTypeDef *_hdma)) {
+HAL_StatusTypeDef HAL_DMA_RegisterCallback(DMA_HandleTypeDef *hdma,
+                                           HAL_DMA_CallbackIDTypeDef CallbackID,
+                                           void (*pCallback)(DMA_HandleTypeDef *_hdma)) {
     HAL_StatusTypeDef status = HAL_OK;
 
     /* Process locked */

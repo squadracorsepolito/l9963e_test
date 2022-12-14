@@ -437,12 +437,11 @@ __weak HAL_StatusTypeDef HAL_RCC_OscConfig(RCC_OscInitTypeDef *RCC_OscInitStruct
                 }
 
                 /* Configure the main PLL clock source, multiplication and division factors. */
-                WRITE_REG(
-                    RCC->PLLCFGR,
-                    (RCC_OscInitStruct->PLL.PLLSource | RCC_OscInitStruct->PLL.PLLM |
-                     (RCC_OscInitStruct->PLL.PLLN << RCC_PLLCFGR_PLLN_Pos) |
-                     (((RCC_OscInitStruct->PLL.PLLP >> 1U) - 1U) << RCC_PLLCFGR_PLLP_Pos) |
-                     (RCC_OscInitStruct->PLL.PLLQ << RCC_PLLCFGR_PLLQ_Pos)));
+                WRITE_REG(RCC->PLLCFGR,
+                          (RCC_OscInitStruct->PLL.PLLSource | RCC_OscInitStruct->PLL.PLLM |
+                           (RCC_OscInitStruct->PLL.PLLN << RCC_PLLCFGR_PLLN_Pos) |
+                           (((RCC_OscInitStruct->PLL.PLLP >> 1U) - 1U) << RCC_PLLCFGR_PLLP_Pos) |
+                           (RCC_OscInitStruct->PLL.PLLQ << RCC_PLLCFGR_PLLQ_Pos)));
                 /* Enable the main PLL. */
                 __HAL_RCC_PLL_ENABLE();
 
@@ -584,9 +583,8 @@ HAL_StatusTypeDef HAL_RCC_ClockConfig(RCC_ClkInitTypeDef *RCC_ClkInitStruct, uin
             }
         }
         /* PLL is selected as System Clock Source */
-        else if (
-            (RCC_ClkInitStruct->SYSCLKSource == RCC_SYSCLKSOURCE_PLLCLK) ||
-            (RCC_ClkInitStruct->SYSCLKSource == RCC_SYSCLKSOURCE_PLLRCLK)) {
+        else if ((RCC_ClkInitStruct->SYSCLKSource == RCC_SYSCLKSOURCE_PLLCLK) ||
+                 (RCC_ClkInitStruct->SYSCLKSource == RCC_SYSCLKSOURCE_PLLRCLK)) {
             /* Check the PLL ready flag */
             if (__HAL_RCC_GET_FLAG(RCC_FLAG_PLLRDY) == RESET) {
                 return HAL_ERROR;
@@ -821,12 +819,14 @@ __weak uint32_t HAL_RCC_GetSysClockFreq(void) {
             pllm = RCC->PLLCFGR & RCC_PLLCFGR_PLLM;
             if (__HAL_RCC_GET_PLL_OSCSOURCE() != RCC_PLLSOURCE_HSI) {
                 /* HSE used as PLL clock source */
-                pllvco =
-                    (uint32_t)((((uint64_t)HSE_VALUE * ((uint64_t)((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> RCC_PLLCFGR_PLLN_Pos)))) / (uint64_t)pllm);
+                pllvco = (uint32_t)((((uint64_t)HSE_VALUE *
+                                      ((uint64_t)((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> RCC_PLLCFGR_PLLN_Pos)))) /
+                                    (uint64_t)pllm);
             } else {
                 /* HSI used as PLL clock source */
-                pllvco =
-                    (uint32_t)((((uint64_t)HSI_VALUE * ((uint64_t)((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> RCC_PLLCFGR_PLLN_Pos)))) / (uint64_t)pllm);
+                pllvco = (uint32_t)((((uint64_t)HSI_VALUE *
+                                      ((uint64_t)((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> RCC_PLLCFGR_PLLN_Pos)))) /
+                                    (uint64_t)pllm);
             }
             pllp = ((((RCC->PLLCFGR & RCC_PLLCFGR_PLLP) >> RCC_PLLCFGR_PLLP_Pos) + 1U) * 2U);
 

@@ -2040,12 +2040,11 @@ HAL_StatusTypeDef HAL_TIM_Encoder_Stop(TIM_HandleTypeDef *htim, uint32_t Channel
 HAL_StatusTypeDef HAL_TIM_Encoder_Start_IT(TIM_HandleTypeDef *htim, uint32_t Channel);
 HAL_StatusTypeDef HAL_TIM_Encoder_Stop_IT(TIM_HandleTypeDef *htim, uint32_t Channel);
 /* Non-Blocking mode: DMA */
-HAL_StatusTypeDef HAL_TIM_Encoder_Start_DMA(
-    TIM_HandleTypeDef *htim,
-    uint32_t Channel,
-    uint32_t *pData1,
-    uint32_t *pData2,
-    uint16_t Length);
+HAL_StatusTypeDef HAL_TIM_Encoder_Start_DMA(TIM_HandleTypeDef *htim,
+                                            uint32_t Channel,
+                                            uint32_t *pData1,
+                                            uint32_t *pData2,
+                                            uint16_t Length);
 HAL_StatusTypeDef HAL_TIM_Encoder_Stop_DMA(TIM_HandleTypeDef *htim, uint32_t Channel);
 /**
   * @}
@@ -2069,46 +2068,40 @@ void HAL_TIM_IRQHandler(TIM_HandleTypeDef *htim);
 HAL_StatusTypeDef HAL_TIM_OC_ConfigChannel(TIM_HandleTypeDef *htim, TIM_OC_InitTypeDef *sConfig, uint32_t Channel);
 HAL_StatusTypeDef HAL_TIM_PWM_ConfigChannel(TIM_HandleTypeDef *htim, TIM_OC_InitTypeDef *sConfig, uint32_t Channel);
 HAL_StatusTypeDef HAL_TIM_IC_ConfigChannel(TIM_HandleTypeDef *htim, TIM_IC_InitTypeDef *sConfig, uint32_t Channel);
-HAL_StatusTypeDef HAL_TIM_OnePulse_ConfigChannel(
-    TIM_HandleTypeDef *htim,
-    TIM_OnePulse_InitTypeDef *sConfig,
-    uint32_t OutputChannel,
-    uint32_t InputChannel);
-HAL_StatusTypeDef HAL_TIM_ConfigOCrefClear(
-    TIM_HandleTypeDef *htim,
-    TIM_ClearInputConfigTypeDef *sClearInputConfig,
-    uint32_t Channel);
+HAL_StatusTypeDef HAL_TIM_OnePulse_ConfigChannel(TIM_HandleTypeDef *htim,
+                                                 TIM_OnePulse_InitTypeDef *sConfig,
+                                                 uint32_t OutputChannel,
+                                                 uint32_t InputChannel);
+HAL_StatusTypeDef HAL_TIM_ConfigOCrefClear(TIM_HandleTypeDef *htim,
+                                           TIM_ClearInputConfigTypeDef *sClearInputConfig,
+                                           uint32_t Channel);
 HAL_StatusTypeDef HAL_TIM_ConfigClockSource(TIM_HandleTypeDef *htim, TIM_ClockConfigTypeDef *sClockSourceConfig);
 HAL_StatusTypeDef HAL_TIM_ConfigTI1Input(TIM_HandleTypeDef *htim, uint32_t TI1_Selection);
 HAL_StatusTypeDef HAL_TIM_SlaveConfigSynchro(TIM_HandleTypeDef *htim, TIM_SlaveConfigTypeDef *sSlaveConfig);
 HAL_StatusTypeDef HAL_TIM_SlaveConfigSynchro_IT(TIM_HandleTypeDef *htim, TIM_SlaveConfigTypeDef *sSlaveConfig);
-HAL_StatusTypeDef HAL_TIM_DMABurst_WriteStart(
-    TIM_HandleTypeDef *htim,
-    uint32_t BurstBaseAddress,
-    uint32_t BurstRequestSrc,
-    uint32_t *BurstBuffer,
-    uint32_t BurstLength);
-HAL_StatusTypeDef HAL_TIM_DMABurst_MultiWriteStart(
-    TIM_HandleTypeDef *htim,
-    uint32_t BurstBaseAddress,
-    uint32_t BurstRequestSrc,
-    uint32_t *BurstBuffer,
-    uint32_t BurstLength,
-    uint32_t DataLength);
+HAL_StatusTypeDef HAL_TIM_DMABurst_WriteStart(TIM_HandleTypeDef *htim,
+                                              uint32_t BurstBaseAddress,
+                                              uint32_t BurstRequestSrc,
+                                              uint32_t *BurstBuffer,
+                                              uint32_t BurstLength);
+HAL_StatusTypeDef HAL_TIM_DMABurst_MultiWriteStart(TIM_HandleTypeDef *htim,
+                                                   uint32_t BurstBaseAddress,
+                                                   uint32_t BurstRequestSrc,
+                                                   uint32_t *BurstBuffer,
+                                                   uint32_t BurstLength,
+                                                   uint32_t DataLength);
 HAL_StatusTypeDef HAL_TIM_DMABurst_WriteStop(TIM_HandleTypeDef *htim, uint32_t BurstRequestSrc);
-HAL_StatusTypeDef HAL_TIM_DMABurst_ReadStart(
-    TIM_HandleTypeDef *htim,
-    uint32_t BurstBaseAddress,
-    uint32_t BurstRequestSrc,
-    uint32_t *BurstBuffer,
-    uint32_t BurstLength);
-HAL_StatusTypeDef HAL_TIM_DMABurst_MultiReadStart(
-    TIM_HandleTypeDef *htim,
-    uint32_t BurstBaseAddress,
-    uint32_t BurstRequestSrc,
-    uint32_t *BurstBuffer,
-    uint32_t BurstLength,
-    uint32_t DataLength);
+HAL_StatusTypeDef HAL_TIM_DMABurst_ReadStart(TIM_HandleTypeDef *htim,
+                                             uint32_t BurstBaseAddress,
+                                             uint32_t BurstRequestSrc,
+                                             uint32_t *BurstBuffer,
+                                             uint32_t BurstLength);
+HAL_StatusTypeDef HAL_TIM_DMABurst_MultiReadStart(TIM_HandleTypeDef *htim,
+                                                  uint32_t BurstBaseAddress,
+                                                  uint32_t BurstRequestSrc,
+                                                  uint32_t *BurstBuffer,
+                                                  uint32_t BurstLength,
+                                                  uint32_t DataLength);
 HAL_StatusTypeDef HAL_TIM_DMABurst_ReadStop(TIM_HandleTypeDef *htim, uint32_t BurstRequestSrc);
 HAL_StatusTypeDef HAL_TIM_GenerateEvent(TIM_HandleTypeDef *htim, uint32_t EventSource);
 uint32_t HAL_TIM_ReadCapturedValue(TIM_HandleTypeDef *htim, uint32_t Channel);
@@ -2134,10 +2127,9 @@ void HAL_TIM_ErrorCallback(TIM_HandleTypeDef *htim);
 
 /* Callbacks Register/UnRegister functions  ***********************************/
 #if (USE_HAL_TIM_REGISTER_CALLBACKS == 1)
-HAL_StatusTypeDef HAL_TIM_RegisterCallback(
-    TIM_HandleTypeDef *htim,
-    HAL_TIM_CallbackIDTypeDef CallbackID,
-    pTIM_CallbackTypeDef pCallback);
+HAL_StatusTypeDef HAL_TIM_RegisterCallback(TIM_HandleTypeDef *htim,
+                                           HAL_TIM_CallbackIDTypeDef CallbackID,
+                                           pTIM_CallbackTypeDef pCallback);
 HAL_StatusTypeDef HAL_TIM_UnRegisterCallback(TIM_HandleTypeDef *htim, HAL_TIM_CallbackIDTypeDef CallbackID);
 #endif /* USE_HAL_TIM_REGISTER_CALLBACKS */
 
@@ -2177,11 +2169,10 @@ HAL_TIM_DMABurstStateTypeDef HAL_TIM_DMABurstState(TIM_HandleTypeDef *htim);
 void TIM_Base_SetConfig(TIM_TypeDef *TIMx, TIM_Base_InitTypeDef *Structure);
 void TIM_TI1_SetConfig(TIM_TypeDef *TIMx, uint32_t TIM_ICPolarity, uint32_t TIM_ICSelection, uint32_t TIM_ICFilter);
 void TIM_OC2_SetConfig(TIM_TypeDef *TIMx, TIM_OC_InitTypeDef *OC_Config);
-void TIM_ETR_SetConfig(
-    TIM_TypeDef *TIMx,
-    uint32_t TIM_ExtTRGPrescaler,
-    uint32_t TIM_ExtTRGPolarity,
-    uint32_t ExtTRGFilter);
+void TIM_ETR_SetConfig(TIM_TypeDef *TIMx,
+                       uint32_t TIM_ExtTRGPrescaler,
+                       uint32_t TIM_ExtTRGPolarity,
+                       uint32_t ExtTRGFilter);
 
 void TIM_DMADelayPulseHalfCplt(DMA_HandleTypeDef *hdma);
 void TIM_DMAError(DMA_HandleTypeDef *hdma);

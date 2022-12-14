@@ -30,9 +30,8 @@
 #endif
 
 /* CMSIS compiler control architecture macros */
-#if (                                                           \
-    (defined(__TARGET_ARCH_6_M) && (__TARGET_ARCH_6_M == 1)) || \
-    (defined(__TARGET_ARCH_6S_M) && (__TARGET_ARCH_6S_M == 1)))
+#if ((defined(__TARGET_ARCH_6_M) && (__TARGET_ARCH_6_M == 1)) || \
+     (defined(__TARGET_ARCH_6S_M) && (__TARGET_ARCH_6S_M == 1)))
 #define __ARM_ARCH_6M__ 1
 #endif
 

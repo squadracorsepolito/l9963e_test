@@ -1263,34 +1263,32 @@ extern "C" {
   * @{
   */
 #if defined(STM32F405xx) || defined(STM32F415xx) || defined(STM32F407xx) || defined(STM32F417xx)
-#define GPIO_GET_INDEX(__GPIOx__)       \
-    (uint8_t)(                          \
-        ((__GPIOx__) == (GPIOA))   ? 0U \
-        : ((__GPIOx__) == (GPIOB)) ? 1U \
-        : ((__GPIOx__) == (GPIOC)) ? 2U \
-        : ((__GPIOx__) == (GPIOD)) ? 3U \
-        : ((__GPIOx__) == (GPIOE)) ? 4U \
-        : ((__GPIOx__) == (GPIOF)) ? 5U \
-        : ((__GPIOx__) == (GPIOG)) ? 6U \
-        : ((__GPIOx__) == (GPIOH)) ? 7U \
-                                   : 8U)
+#define GPIO_GET_INDEX(__GPIOx__)             \
+    (uint8_t)(((__GPIOx__) == (GPIOA))   ? 0U \
+              : ((__GPIOx__) == (GPIOB)) ? 1U \
+              : ((__GPIOx__) == (GPIOC)) ? 2U \
+              : ((__GPIOx__) == (GPIOD)) ? 3U \
+              : ((__GPIOx__) == (GPIOE)) ? 4U \
+              : ((__GPIOx__) == (GPIOF)) ? 5U \
+              : ((__GPIOx__) == (GPIOG)) ? 6U \
+              : ((__GPIOx__) == (GPIOH)) ? 7U \
+                                         : 8U)
 #endif /* STM32F405xx || STM32F415xx || STM32F407xx || STM32F417xx */
 
 #if defined(STM32F427xx) || defined(STM32F437xx) || defined(STM32F429xx) || defined(STM32F439xx) || \
     defined(STM32F469xx) || defined(STM32F479xx)
-#define GPIO_GET_INDEX(__GPIOx__)       \
-    (uint8_t)(                          \
-        ((__GPIOx__) == (GPIOA))   ? 0U \
-        : ((__GPIOx__) == (GPIOB)) ? 1U \
-        : ((__GPIOx__) == (GPIOC)) ? 2U \
-        : ((__GPIOx__) == (GPIOD)) ? 3U \
-        : ((__GPIOx__) == (GPIOE)) ? 4U \
-        : ((__GPIOx__) == (GPIOF)) ? 5U \
-        : ((__GPIOx__) == (GPIOG)) ? 6U \
-        : ((__GPIOx__) == (GPIOH)) ? 7U \
-        : ((__GPIOx__) == (GPIOI)) ? 8U \
-        : ((__GPIOx__) == (GPIOJ)) ? 9U \
-                                   : 10U)
+#define GPIO_GET_INDEX(__GPIOx__)             \
+    (uint8_t)(((__GPIOx__) == (GPIOA))   ? 0U \
+              : ((__GPIOx__) == (GPIOB)) ? 1U \
+              : ((__GPIOx__) == (GPIOC)) ? 2U \
+              : ((__GPIOx__) == (GPIOD)) ? 3U \
+              : ((__GPIOx__) == (GPIOE)) ? 4U \
+              : ((__GPIOx__) == (GPIOF)) ? 5U \
+              : ((__GPIOx__) == (GPIOG)) ? 6U \
+              : ((__GPIOx__) == (GPIOH)) ? 7U \
+              : ((__GPIOx__) == (GPIOI)) ? 8U \
+              : ((__GPIOx__) == (GPIOJ)) ? 9U \
+                                         : 10U)
 #endif /* STM32F427xx || STM32F437xx || STM32F429xx || STM32F439xx || STM32F469xx || STM32F479xx */
 
 #if defined(STM32F410Tx) || defined(STM32F410Cx) || defined(STM32F410Rx)
@@ -1299,46 +1297,42 @@ extern "C" {
 #endif /* STM32F410Tx || STM32F410Cx || STM32F410Rx */
 
 #if defined(STM32F401xC) || defined(STM32F401xE) || defined(STM32F411xE)
-#define GPIO_GET_INDEX(__GPIOx__)       \
-    (uint8_t)(                          \
-        ((__GPIOx__) == (GPIOA))   ? 0U \
-        : ((__GPIOx__) == (GPIOB)) ? 1U \
-        : ((__GPIOx__) == (GPIOC)) ? 2U \
-        : ((__GPIOx__) == (GPIOD)) ? 3U \
-        : ((__GPIOx__) == (GPIOE)) ? 4U \
-                                   : 7U)
+#define GPIO_GET_INDEX(__GPIOx__)             \
+    (uint8_t)(((__GPIOx__) == (GPIOA))   ? 0U \
+              : ((__GPIOx__) == (GPIOB)) ? 1U \
+              : ((__GPIOx__) == (GPIOC)) ? 2U \
+              : ((__GPIOx__) == (GPIOD)) ? 3U \
+              : ((__GPIOx__) == (GPIOE)) ? 4U \
+                                         : 7U)
 #endif /* STM32F401xC || STM32F401xE || STM32F411xE */
 
 #if defined(STM32F446xx) || defined(STM32F412Zx) || defined(STM32F413xx) || defined(STM32F423xx)
-#define GPIO_GET_INDEX(__GPIOx__)       \
-    (uint8_t)(                          \
-        ((__GPIOx__) == (GPIOA))   ? 0U \
-        : ((__GPIOx__) == (GPIOB)) ? 1U \
-        : ((__GPIOx__) == (GPIOC)) ? 2U \
-        : ((__GPIOx__) == (GPIOD)) ? 3U \
-        : ((__GPIOx__) == (GPIOE)) ? 4U \
-        : ((__GPIOx__) == (GPIOF)) ? 5U \
-        : ((__GPIOx__) == (GPIOG)) ? 6U \
-                                   : 7U)
+#define GPIO_GET_INDEX(__GPIOx__)             \
+    (uint8_t)(((__GPIOx__) == (GPIOA))   ? 0U \
+              : ((__GPIOx__) == (GPIOB)) ? 1U \
+              : ((__GPIOx__) == (GPIOC)) ? 2U \
+              : ((__GPIOx__) == (GPIOD)) ? 3U \
+              : ((__GPIOx__) == (GPIOE)) ? 4U \
+              : ((__GPIOx__) == (GPIOF)) ? 5U \
+              : ((__GPIOx__) == (GPIOG)) ? 6U \
+                                         : 7U)
 #endif /* STM32F446xx || STM32F412Zx  || STM32F413xx || STM32F423xx */
 #if defined(STM32F412Vx)
-#define GPIO_GET_INDEX(__GPIOx__)       \
-    (uint8_t)(                          \
-        ((__GPIOx__) == (GPIOA))   ? 0U \
-        : ((__GPIOx__) == (GPIOB)) ? 1U \
-        : ((__GPIOx__) == (GPIOC)) ? 2U \
-        : ((__GPIOx__) == (GPIOD)) ? 3U \
-        : ((__GPIOx__) == (GPIOE)) ? 4U \
-                                   : 7U)
+#define GPIO_GET_INDEX(__GPIOx__)             \
+    (uint8_t)(((__GPIOx__) == (GPIOA))   ? 0U \
+              : ((__GPIOx__) == (GPIOB)) ? 1U \
+              : ((__GPIOx__) == (GPIOC)) ? 2U \
+              : ((__GPIOx__) == (GPIOD)) ? 3U \
+              : ((__GPIOx__) == (GPIOE)) ? 4U \
+                                         : 7U)
 #endif /* STM32F412Vx */
 #if defined(STM32F412Rx)
-#define GPIO_GET_INDEX(__GPIOx__)       \
-    (uint8_t)(                          \
-        ((__GPIOx__) == (GPIOA))   ? 0U \
-        : ((__GPIOx__) == (GPIOB)) ? 1U \
-        : ((__GPIOx__) == (GPIOC)) ? 2U \
-        : ((__GPIOx__) == (GPIOD)) ? 3U \
-                                   : 7U)
+#define GPIO_GET_INDEX(__GPIOx__)             \
+    (uint8_t)(((__GPIOx__) == (GPIOA))   ? 0U \
+              : ((__GPIOx__) == (GPIOB)) ? 1U \
+              : ((__GPIOx__) == (GPIOC)) ? 2U \
+              : ((__GPIOx__) == (GPIOD)) ? 3U \
+                                         : 7U)
 #endif /* STM32F412Rx */
 #if defined(STM32F412Cx)
 #define GPIO_GET_INDEX(__GPIOx__) \

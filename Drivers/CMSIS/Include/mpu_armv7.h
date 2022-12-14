@@ -116,12 +116,11 @@
 */
 #define ARM_MPU_RASR(                                                                                            \
     DisableExec, AccessPermission, TypeExtField, IsShareable, IsCacheable, IsBufferable, SubRegionDisable, Size) \
-    ARM_MPU_RASR_EX(                                                                                             \
-        DisableExec,                                                                                             \
-        AccessPermission,                                                                                        \
-        ARM_MPU_ACCESS_(TypeExtField, IsShareable, IsCacheable, IsBufferable),                                   \
-        SubRegionDisable,                                                                                        \
-        Size)
+    ARM_MPU_RASR_EX(DisableExec,                                                                                 \
+                    AccessPermission,                                                                            \
+                    ARM_MPU_ACCESS_(TypeExtField, IsShareable, IsCacheable, IsBufferable),                       \
+                    SubRegionDisable,                                                                            \
+                    Size)
 
 /**
 * MPU Memory Access Attribute for strongly ordered memory.

@@ -335,10 +335,9 @@ HAL_StatusTypeDef HAL_EXTI_ClearConfigLine(EXTI_HandleTypeDef *hexti) {
   * @param  pPendingCbfn function pointer to be stored as callback.
   * @retval HAL Status.
   */
-HAL_StatusTypeDef HAL_EXTI_RegisterCallback(
-    EXTI_HandleTypeDef *hexti,
-    EXTI_CallbackIDTypeDef CallbackID,
-    void (*pPendingCbfn)(void)) {
+HAL_StatusTypeDef HAL_EXTI_RegisterCallback(EXTI_HandleTypeDef *hexti,
+                                            EXTI_CallbackIDTypeDef CallbackID,
+                                            void (*pPendingCbfn)(void)) {
     HAL_StatusTypeDef status = HAL_OK;
 
     switch (CallbackID) {

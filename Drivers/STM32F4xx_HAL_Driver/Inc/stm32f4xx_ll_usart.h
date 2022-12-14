@@ -741,11 +741,10 @@ __STATIC_INLINE uint32_t LL_USART_GetClockPolarity(USART_TypeDef *USARTx) {
   *         @arg @ref LL_USART_LASTCLKPULSE_OUTPUT
   * @retval None
   */
-__STATIC_INLINE void LL_USART_ConfigClock(
-    USART_TypeDef *USARTx,
-    uint32_t Phase,
-    uint32_t Polarity,
-    uint32_t LBCPOutput) {
+__STATIC_INLINE void LL_USART_ConfigClock(USART_TypeDef *USARTx,
+                                          uint32_t Phase,
+                                          uint32_t Polarity,
+                                          uint32_t LBCPOutput) {
     MODIFY_REG(USARTx->CR2, USART_CR2_CPHA | USART_CR2_CPOL | USART_CR2_LBCL, Phase | Polarity | LBCPOutput);
 }
 
@@ -839,11 +838,10 @@ __STATIC_INLINE uint32_t LL_USART_GetStopBitsLength(USART_TypeDef *USARTx) {
   *         @arg @ref LL_USART_STOPBITS_2
   * @retval None
   */
-__STATIC_INLINE void LL_USART_ConfigCharacter(
-    USART_TypeDef *USARTx,
-    uint32_t DataWidth,
-    uint32_t Parity,
-    uint32_t StopBits) {
+__STATIC_INLINE void LL_USART_ConfigCharacter(USART_TypeDef *USARTx,
+                                              uint32_t DataWidth,
+                                              uint32_t Parity,
+                                              uint32_t StopBits) {
     MODIFY_REG(USARTx->CR1, USART_CR1_PS | USART_CR1_PCE | USART_CR1_M, Parity | DataWidth);
     MODIFY_REG(USARTx->CR2, USART_CR2_STOP, StopBits);
 }
@@ -1000,11 +998,10 @@ __STATIC_INLINE uint32_t LL_USART_IsEnabledOneBitSamp(USART_TypeDef *USARTx) {
   * @param  BaudRate Baud Rate
   * @retval None
   */
-__STATIC_INLINE void LL_USART_SetBaudRate(
-    USART_TypeDef *USARTx,
-    uint32_t PeriphClk,
-    uint32_t OverSampling,
-    uint32_t BaudRate) {
+__STATIC_INLINE void LL_USART_SetBaudRate(USART_TypeDef *USARTx,
+                                          uint32_t PeriphClk,
+                                          uint32_t OverSampling,
+                                          uint32_t BaudRate) {
     if (OverSampling == LL_USART_OVERSAMPLING_8) {
         USARTx->BRR = (uint16_t)(__LL_USART_DIV_SAMPLING8(PeriphClk, BaudRate));
     } else {

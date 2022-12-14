@@ -557,11 +557,10 @@ __STATIC_INLINE void LL_MPU_EnableRegion(uint32_t Region) {
   *         @arg @ref LL_MPU_ACCESS_BUFFERABLE or @ref LL_MPU_ACCESS_NOT_BUFFERABLE
   * @retval None
   */
-__STATIC_INLINE void LL_MPU_ConfigRegion(
-    uint32_t Region,
-    uint32_t SubRegionDisable,
-    uint32_t Address,
-    uint32_t Attributes) {
+__STATIC_INLINE void LL_MPU_ConfigRegion(uint32_t Region,
+                                         uint32_t SubRegionDisable,
+                                         uint32_t Address,
+                                         uint32_t Attributes) {
     /* Set Region number */
     WRITE_REG(MPU->RNR, Region);
     /* Set base address */

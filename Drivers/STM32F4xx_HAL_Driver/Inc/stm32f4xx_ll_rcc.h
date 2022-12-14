@@ -418,52 +418,50 @@ typedef struct {
 #if defined(RCC_SAI1A_PLLSOURCE_SUPPORT)
 #define LL_RCC_SAI1_A_CLKSOURCE_PLLI2S \
     (uint32_t)(RCC_DCKCFGR_SAI1ASRC | 0x00000000U) /*!< PLLI2S clock used as SAI1 block A clock source */
-#define LL_RCC_SAI1_A_CLKSOURCE_PIN \
-    (uint32_t)(                     \
-        RCC_DCKCFGR_SAI1ASRC | (RCC_DCKCFGR_SAI1ASRC_0 >> 16)) /*!< External pin used as SAI1 block A clock source */
-#define LL_RCC_SAI1_A_CLKSOURCE_PLL \
-    (uint32_t)(                     \
-        RCC_DCKCFGR_SAI1ASRC | (RCC_DCKCFGR_SAI1ASRC_1 >> 16)) /*!< PLL clock used as SAI1 block A clock source */
+#define LL_RCC_SAI1_A_CLKSOURCE_PIN   \
+    (uint32_t)(RCC_DCKCFGR_SAI1ASRC | \
+               (RCC_DCKCFGR_SAI1ASRC_0 >> 16)) /*!< External pin used as SAI1 block A clock source */
+#define LL_RCC_SAI1_A_CLKSOURCE_PLL   \
+    (uint32_t)(RCC_DCKCFGR_SAI1ASRC | \
+               (RCC_DCKCFGR_SAI1ASRC_1 >> 16)) /*!< PLL clock used as SAI1 block A clock source */
 #define LL_RCC_SAI1_A_CLKSOURCE_PLLSRC \
-    (uint32_t)(                        \
-        RCC_DCKCFGR_SAI1ASRC | (RCC_DCKCFGR_SAI1ASRC >> 16)) /*!< PLL Main clock used as SAI1 block A clock source */
+    (uint32_t)(RCC_DCKCFGR_SAI1ASRC |  \
+               (RCC_DCKCFGR_SAI1ASRC >> 16)) /*!< PLL Main clock used as SAI1 block A clock source */
 #else
 #define LL_RCC_SAI1_A_CLKSOURCE_PLLSAI \
     (uint32_t)(RCC_DCKCFGR_SAI1ASRC | 0x00000000U) /*!< PLLSAI clock used as SAI1 block A clock source */
 #define LL_RCC_SAI1_A_CLKSOURCE_PLLI2S \
-    (uint32_t)(                        \
-        RCC_DCKCFGR_SAI1ASRC | (RCC_DCKCFGR_SAI1ASRC_0 >> 16)) /*!< PLLI2S clock used as SAI1 block A clock source */
-#define LL_RCC_SAI1_A_CLKSOURCE_PIN \
-    (uint32_t)(                     \
-        RCC_DCKCFGR_SAI1ASRC |      \
-        (RCC_DCKCFGR_SAI1ASRC_1 >> 16)) /*!< External pin clock used as SAI1 block A clock source */
-#endif                                  /* RCC_SAI1A_PLLSOURCE_SUPPORT */
-#endif                                  /* RCC_DCKCFGR_SAI1ASRC */
+    (uint32_t)(RCC_DCKCFGR_SAI1ASRC |  \
+               (RCC_DCKCFGR_SAI1ASRC_0 >> 16)) /*!< PLLI2S clock used as SAI1 block A clock source */
+#define LL_RCC_SAI1_A_CLKSOURCE_PIN   \
+    (uint32_t)(RCC_DCKCFGR_SAI1ASRC | \
+               (RCC_DCKCFGR_SAI1ASRC_1 >> 16)) /*!< External pin clock used as SAI1 block A clock source */
+#endif                                         /* RCC_SAI1A_PLLSOURCE_SUPPORT */
+#endif                                         /* RCC_DCKCFGR_SAI1ASRC */
 #if defined(RCC_DCKCFGR_SAI1BSRC)
 #if defined(RCC_SAI1B_PLLSOURCE_SUPPORT)
 #define LL_RCC_SAI1_B_CLKSOURCE_PLLI2S \
     (uint32_t)(RCC_DCKCFGR_SAI1BSRC | 0x00000000U) /*!< PLLI2S clock used as SAI1 block B clock source */
-#define LL_RCC_SAI1_B_CLKSOURCE_PIN \
-    (uint32_t)(                     \
-        RCC_DCKCFGR_SAI1BSRC | (RCC_DCKCFGR_SAI1BSRC_0 >> 16)) /*!< External pin used as SAI1 block B clock source */
-#define LL_RCC_SAI1_B_CLKSOURCE_PLL \
-    (uint32_t)(                     \
-        RCC_DCKCFGR_SAI1BSRC | (RCC_DCKCFGR_SAI1BSRC_1 >> 16)) /*!< PLL clock used as SAI1 block B clock source */
+#define LL_RCC_SAI1_B_CLKSOURCE_PIN   \
+    (uint32_t)(RCC_DCKCFGR_SAI1BSRC | \
+               (RCC_DCKCFGR_SAI1BSRC_0 >> 16)) /*!< External pin used as SAI1 block B clock source */
+#define LL_RCC_SAI1_B_CLKSOURCE_PLL   \
+    (uint32_t)(RCC_DCKCFGR_SAI1BSRC | \
+               (RCC_DCKCFGR_SAI1BSRC_1 >> 16)) /*!< PLL clock used as SAI1 block B clock source */
 #define LL_RCC_SAI1_B_CLKSOURCE_PLLSRC \
-    (uint32_t)(                        \
-        RCC_DCKCFGR_SAI1BSRC | (RCC_DCKCFGR_SAI1BSRC >> 16)) /*!< PLL Main clock used as SAI1 block B clock source */
+    (uint32_t)(RCC_DCKCFGR_SAI1BSRC |  \
+               (RCC_DCKCFGR_SAI1BSRC >> 16)) /*!< PLL Main clock used as SAI1 block B clock source */
 #else
 #define LL_RCC_SAI1_B_CLKSOURCE_PLLSAI \
     (uint32_t)(RCC_DCKCFGR_SAI1BSRC | 0x00000000U) /*!< PLLSAI clock used as SAI1 block B clock source */
 #define LL_RCC_SAI1_B_CLKSOURCE_PLLI2S \
-    (uint32_t)(                        \
-        RCC_DCKCFGR_SAI1BSRC | (RCC_DCKCFGR_SAI1BSRC_0 >> 16)) /*!< PLLI2S clock used as SAI1 block B clock source */
-#define LL_RCC_SAI1_B_CLKSOURCE_PIN \
-    (uint32_t)(                     \
-        RCC_DCKCFGR_SAI1BSRC |      \
-        (RCC_DCKCFGR_SAI1BSRC_1 >> 16)) /*!< External pin clock used as SAI1 block B clock source */
-#endif                                  /* RCC_SAI1B_PLLSOURCE_SUPPORT */
-#endif                                  /* RCC_DCKCFGR_SAI1BSRC */
+    (uint32_t)(RCC_DCKCFGR_SAI1BSRC |  \
+               (RCC_DCKCFGR_SAI1BSRC_0 >> 16)) /*!< PLLI2S clock used as SAI1 block B clock source */
+#define LL_RCC_SAI1_B_CLKSOURCE_PIN   \
+    (uint32_t)(RCC_DCKCFGR_SAI1BSRC | \
+               (RCC_DCKCFGR_SAI1BSRC_1 >> 16)) /*!< External pin clock used as SAI1 block B clock source */
+#endif                                         /* RCC_SAI1B_PLLSOURCE_SUPPORT */
+#endif                                         /* RCC_DCKCFGR_SAI1BSRC */
 /**
   * @}
   */
@@ -607,17 +605,15 @@ typedef struct {
 #define LL_RCC_DFSDM1_AUDIO_CLKSOURCE_I2S1 \
     (uint32_t)(RCC_DCKCFGR_CKDFSDM1ASEL | 0x00000000U) /*!< I2S1 clock used as DFSDM1 Audio clock source */
 #define LL_RCC_DFSDM1_AUDIO_CLKSOURCE_I2S2 \
-    (uint32_t)(                            \
-        RCC_DCKCFGR_CKDFSDM1ASEL |         \
-        (RCC_DCKCFGR_CKDFSDM1ASEL << 16)) /*!< I2S2 clock used as DFSDM1 Audio clock source */
+    (uint32_t)(RCC_DCKCFGR_CKDFSDM1ASEL |  \
+               (RCC_DCKCFGR_CKDFSDM1ASEL << 16)) /*!< I2S2 clock used as DFSDM1 Audio clock source */
 #if defined(DFSDM2_Channel0)
 #define LL_RCC_DFSDM2_AUDIO_CLKSOURCE_I2S1 \
     (uint32_t)(RCC_DCKCFGR_CKDFSDM2ASEL | 0x00000000U) /*!< I2S1 clock used as DFSDM2 Audio clock source */
 #define LL_RCC_DFSDM2_AUDIO_CLKSOURCE_I2S2 \
-    (uint32_t)(                            \
-        RCC_DCKCFGR_CKDFSDM2ASEL |         \
-        (RCC_DCKCFGR_CKDFSDM2ASEL << 16)) /*!< I2S2 clock used as DFSDM2 Audio clock source */
-#endif                                    /* DFSDM2_Channel0 */
+    (uint32_t)(RCC_DCKCFGR_CKDFSDM2ASEL |  \
+               (RCC_DCKCFGR_CKDFSDM2ASEL << 16)) /*!< I2S2 clock used as DFSDM2 Audio clock source */
+#endif                                           /* DFSDM2_Channel0 */
 /**
   * @}
   */
@@ -3944,10 +3940,9 @@ __STATIC_INLINE void LL_RCC_MCO2_Disable(void) {
   * @retval None
   */
 __STATIC_INLINE void LL_RCC_ConfigMCO(uint32_t MCOxSource, uint32_t MCOxPrescaler) {
-    MODIFY_REG(
-        RCC->CFGR,
-        (MCOxSource & 0xFFFF0000U) | (MCOxPrescaler & 0xFFFF0000U),
-        (MCOxSource << 16U) | (MCOxPrescaler << 16U));
+    MODIFY_REG(RCC->CFGR,
+               (MCOxSource & 0xFFFF0000U) | (MCOxPrescaler & 0xFFFF0000U),
+               (MCOxSource << 16U) | (MCOxPrescaler << 16U));
 }
 
 /**
@@ -4820,10 +4815,9 @@ __STATIC_INLINE uint32_t LL_RCC_PLL_IsReady(void) {
   * @retval None
   */
 __STATIC_INLINE void LL_RCC_PLL_ConfigDomain_SYS(uint32_t Source, uint32_t PLLM, uint32_t PLLN, uint32_t PLLP_R) {
-    MODIFY_REG(
-        RCC->PLLCFGR,
-        RCC_PLLCFGR_PLLSRC | RCC_PLLCFGR_PLLM | RCC_PLLCFGR_PLLN,
-        Source | PLLM | PLLN << RCC_PLLCFGR_PLLN_Pos);
+    MODIFY_REG(RCC->PLLCFGR,
+               RCC_PLLCFGR_PLLSRC | RCC_PLLCFGR_PLLM | RCC_PLLCFGR_PLLN,
+               Source | PLLM | PLLN << RCC_PLLCFGR_PLLN_Pos);
     MODIFY_REG(RCC->PLLCFGR, RCC_PLLCFGR_PLLP, PLLP_R);
 #if defined(RCC_PLLR_SYSCLK_SUPPORT)
     MODIFY_REG(RCC->PLLCFGR, RCC_PLLCFGR_PLLR, PLLP_R);
@@ -4927,10 +4921,9 @@ __STATIC_INLINE void LL_RCC_PLL_ConfigDomain_SYS(uint32_t Source, uint32_t PLLM,
   * @retval None
   */
 __STATIC_INLINE void LL_RCC_PLL_ConfigDomain_48M(uint32_t Source, uint32_t PLLM, uint32_t PLLN, uint32_t PLLQ) {
-    MODIFY_REG(
-        RCC->PLLCFGR,
-        RCC_PLLCFGR_PLLSRC | RCC_PLLCFGR_PLLM | RCC_PLLCFGR_PLLN | RCC_PLLCFGR_PLLQ,
-        Source | PLLM | PLLN << RCC_PLLCFGR_PLLN_Pos | PLLQ);
+    MODIFY_REG(RCC->PLLCFGR,
+               RCC_PLLCFGR_PLLSRC | RCC_PLLCFGR_PLLM | RCC_PLLCFGR_PLLN | RCC_PLLCFGR_PLLQ,
+               Source | PLLM | PLLN << RCC_PLLCFGR_PLLN_Pos | PLLQ);
 }
 
 #if defined(DSI)
@@ -5021,10 +5014,9 @@ __STATIC_INLINE void LL_RCC_PLL_ConfigDomain_48M(uint32_t Source, uint32_t PLLM,
   * @retval None
   */
 __STATIC_INLINE void LL_RCC_PLL_ConfigDomain_DSI(uint32_t Source, uint32_t PLLM, uint32_t PLLN, uint32_t PLLR) {
-    MODIFY_REG(
-        RCC->PLLCFGR,
-        RCC_PLLCFGR_PLLSRC | RCC_PLLCFGR_PLLM | RCC_PLLCFGR_PLLN | RCC_PLLCFGR_PLLR,
-        Source | PLLM | PLLN << RCC_PLLCFGR_PLLN_Pos | PLLR);
+    MODIFY_REG(RCC->PLLCFGR,
+               RCC_PLLCFGR_PLLSRC | RCC_PLLCFGR_PLLM | RCC_PLLCFGR_PLLN | RCC_PLLCFGR_PLLR,
+               Source | PLLM | PLLN << RCC_PLLCFGR_PLLN_Pos | PLLR);
 }
 #endif /* DSI */
 
@@ -5116,10 +5108,9 @@ __STATIC_INLINE void LL_RCC_PLL_ConfigDomain_DSI(uint32_t Source, uint32_t PLLM,
   * @retval None
   */
 __STATIC_INLINE void LL_RCC_PLL_ConfigDomain_I2S(uint32_t Source, uint32_t PLLM, uint32_t PLLN, uint32_t PLLR) {
-    MODIFY_REG(
-        RCC->PLLCFGR,
-        RCC_PLLCFGR_PLLSRC | RCC_PLLCFGR_PLLM | RCC_PLLCFGR_PLLN | RCC_PLLCFGR_PLLR,
-        Source | PLLM | PLLN << RCC_PLLCFGR_PLLN_Pos | PLLR);
+    MODIFY_REG(RCC->PLLCFGR,
+               RCC_PLLCFGR_PLLSRC | RCC_PLLCFGR_PLLM | RCC_PLLCFGR_PLLN | RCC_PLLCFGR_PLLR,
+               Source | PLLM | PLLN << RCC_PLLCFGR_PLLN_Pos | PLLR);
 }
 #endif /* RCC_PLLR_I2S_CLKSOURCE_SUPPORT */
 
@@ -5211,10 +5202,9 @@ __STATIC_INLINE void LL_RCC_PLL_ConfigDomain_I2S(uint32_t Source, uint32_t PLLM,
   * @retval None
   */
 __STATIC_INLINE void LL_RCC_PLL_ConfigDomain_SPDIFRX(uint32_t Source, uint32_t PLLM, uint32_t PLLN, uint32_t PLLR) {
-    MODIFY_REG(
-        RCC->PLLCFGR,
-        RCC_PLLCFGR_PLLSRC | RCC_PLLCFGR_PLLM | RCC_PLLCFGR_PLLN | RCC_PLLCFGR_PLLR,
-        Source | PLLM | PLLN << RCC_PLLCFGR_PLLN_Pos | PLLR);
+    MODIFY_REG(RCC->PLLCFGR,
+               RCC_PLLCFGR_PLLSRC | RCC_PLLCFGR_PLLM | RCC_PLLCFGR_PLLN | RCC_PLLCFGR_PLLR,
+               Source | PLLM | PLLN << RCC_PLLCFGR_PLLN_Pos | PLLR);
 }
 #endif /* SPDIFRX */
 
@@ -5342,20 +5332,18 @@ __STATIC_INLINE void LL_RCC_PLL_ConfigDomain_SPDIFRX(uint32_t Source, uint32_t P
   * @retval None
   */
 #if defined(RCC_DCKCFGR_PLLDIVR)
-__STATIC_INLINE void LL_RCC_PLL_ConfigDomain_SAI(
-    uint32_t Source,
-    uint32_t PLLM,
-    uint32_t PLLN,
-    uint32_t PLLR,
-    uint32_t PLLDIVR)
+__STATIC_INLINE void LL_RCC_PLL_ConfigDomain_SAI(uint32_t Source,
+                                                 uint32_t PLLM,
+                                                 uint32_t PLLN,
+                                                 uint32_t PLLR,
+                                                 uint32_t PLLDIVR)
 #else
 __STATIC_INLINE void LL_RCC_PLL_ConfigDomain_SAI(uint32_t Source, uint32_t PLLM, uint32_t PLLN, uint32_t PLLR)
 #endif /* RCC_DCKCFGR_PLLDIVR */
 {
-    MODIFY_REG(
-        RCC->PLLCFGR,
-        RCC_PLLCFGR_PLLSRC | RCC_PLLCFGR_PLLM | RCC_PLLCFGR_PLLN | RCC_PLLCFGR_PLLR,
-        Source | PLLM | PLLN << RCC_PLLCFGR_PLLN_Pos | PLLR);
+    MODIFY_REG(RCC->PLLCFGR,
+               RCC_PLLCFGR_PLLSRC | RCC_PLLCFGR_PLLM | RCC_PLLCFGR_PLLN | RCC_PLLCFGR_PLLR,
+               Source | PLLM | PLLN << RCC_PLLCFGR_PLLN_Pos | PLLR);
 #if defined(RCC_DCKCFGR_PLLDIVR)
     MODIFY_REG(RCC->DCKCFGR, RCC_DCKCFGR_PLLDIVR, PLLDIVR);
 #endif /* RCC_DCKCFGR_PLLDIVR */
@@ -5580,10 +5568,9 @@ __STATIC_INLINE uint32_t LL_RCC_PLL_GetDivider(void) {
   * @retval None
   */
 __STATIC_INLINE void LL_RCC_PLL_ConfigSpreadSpectrum(uint32_t Mod, uint32_t Inc, uint32_t Sel) {
-    MODIFY_REG(
-        RCC->SSCGR,
-        RCC_SSCGR_MODPER | RCC_SSCGR_INCSTEP | RCC_SSCGR_SPREADSEL,
-        Mod | (Inc << RCC_SSCGR_INCSTEP_Pos) | Sel);
+    MODIFY_REG(RCC->SSCGR,
+               RCC_SSCGR_MODPER | RCC_SSCGR_INCSTEP | RCC_SSCGR_SPREADSEL,
+               Mod | (Inc << RCC_SSCGR_INCSTEP_Pos) | Sel);
 }
 
 /**
@@ -5850,12 +5837,11 @@ __STATIC_INLINE uint32_t LL_RCC_PLLI2S_IsReady(void) {
   *         (*) value not defined in all devices.
   * @retval None
   */
-__STATIC_INLINE void LL_RCC_PLLI2S_ConfigDomain_SAI(
-    uint32_t Source,
-    uint32_t PLLM,
-    uint32_t PLLN,
-    uint32_t PLLQ_R,
-    uint32_t PLLDIVQ_R) {
+__STATIC_INLINE void LL_RCC_PLLI2S_ConfigDomain_SAI(uint32_t Source,
+                                                    uint32_t PLLM,
+                                                    uint32_t PLLN,
+                                                    uint32_t PLLQ_R,
+                                                    uint32_t PLLDIVQ_R) {
     __IO uint32_t *pReg = (__IO uint32_t *)((uint32_t)((uint32_t)(&RCC->PLLCFGR) + (Source & 0x80U)));
     MODIFY_REG(*pReg, RCC_PLLCFGR_PLLSRC, (Source & (~0x80U)));
 #if defined(RCC_PLLI2SCFGR_PLLI2SM)
@@ -6611,12 +6597,11 @@ __STATIC_INLINE uint32_t LL_RCC_PLLSAI_IsReady(void) {
   *         @arg @ref LL_RCC_PLLSAIDIVQ_DIV_32
   * @retval None
   */
-__STATIC_INLINE void LL_RCC_PLLSAI_ConfigDomain_SAI(
-    uint32_t Source,
-    uint32_t PLLM,
-    uint32_t PLLN,
-    uint32_t PLLQ,
-    uint32_t PLLDIVQ) {
+__STATIC_INLINE void LL_RCC_PLLSAI_ConfigDomain_SAI(uint32_t Source,
+                                                    uint32_t PLLM,
+                                                    uint32_t PLLN,
+                                                    uint32_t PLLQ,
+                                                    uint32_t PLLDIVQ) {
     MODIFY_REG(RCC->PLLCFGR, RCC_PLLCFGR_PLLSRC, Source);
 #if defined(RCC_PLLSAICFGR_PLLSAIM)
     MODIFY_REG(RCC->PLLSAICFGR, RCC_PLLSAICFGR_PLLSAIM, PLLM);
@@ -6821,12 +6806,11 @@ __STATIC_INLINE void LL_RCC_PLLSAI_ConfigDomain_48M(uint32_t Source, uint32_t PL
   *         @arg @ref LL_RCC_PLLSAIDIVR_DIV_16
   * @retval None
   */
-__STATIC_INLINE void LL_RCC_PLLSAI_ConfigDomain_LTDC(
-    uint32_t Source,
-    uint32_t PLLM,
-    uint32_t PLLN,
-    uint32_t PLLR,
-    uint32_t PLLDIVR) {
+__STATIC_INLINE void LL_RCC_PLLSAI_ConfigDomain_LTDC(uint32_t Source,
+                                                     uint32_t PLLM,
+                                                     uint32_t PLLN,
+                                                     uint32_t PLLR,
+                                                     uint32_t PLLDIVR) {
     MODIFY_REG(RCC->PLLCFGR, RCC_PLLCFGR_PLLSRC | RCC_PLLCFGR_PLLM, Source | PLLM);
     MODIFY_REG(
         RCC->PLLSAICFGR, RCC_PLLSAICFGR_PLLSAIN | RCC_PLLSAICFGR_PLLSAIR, PLLN << RCC_PLLSAICFGR_PLLSAIN_Pos | PLLR);

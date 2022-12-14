@@ -239,9 +239,8 @@ HAL_StatusTypeDef HAL_FLASHEx_Erase_IT(FLASH_EraseInitTypeDef *pEraseInit) {
     __HAL_FLASH_ENABLE_IT(FLASH_IT_ERR);
 
     /* Clear pending flags (if any) */
-    __HAL_FLASH_CLEAR_FLAG(
-        FLASH_FLAG_EOP | FLASH_FLAG_OPERR | FLASH_FLAG_WRPERR | FLASH_FLAG_PGAERR | FLASH_FLAG_PGPERR |
-        FLASH_FLAG_PGSERR);
+    __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP | FLASH_FLAG_OPERR | FLASH_FLAG_WRPERR | FLASH_FLAG_PGAERR |
+                           FLASH_FLAG_PGPERR | FLASH_FLAG_PGSERR);
 
     if (pEraseInit->TypeErase == FLASH_TYPEERASE_MASSERASE) {
         /*Mass erase to be done*/
@@ -301,10 +300,9 @@ HAL_StatusTypeDef HAL_FLASHEx_OBProgram(FLASH_OBProgramInitTypeDef *pOBInit) {
 
     /*USER  configuration*/
     if ((pOBInit->OptionType & OPTIONBYTE_USER) == OPTIONBYTE_USER) {
-        status = FLASH_OB_UserConfig(
-            pOBInit->USERConfig & OB_IWDG_SW,
-            pOBInit->USERConfig & OB_STOP_NO_RST,
-            pOBInit->USERConfig & OB_STDBY_NO_RST);
+        status = FLASH_OB_UserConfig(pOBInit->USERConfig & OB_IWDG_SW,
+                                     pOBInit->USERConfig & OB_STOP_NO_RST,
+                                     pOBInit->USERConfig & OB_STDBY_NO_RST);
     }
 
     /*BOR Level  configuration*/

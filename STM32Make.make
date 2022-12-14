@@ -37,6 +37,7 @@ BUILD_DIR = build
 # C sources
 C_SOURCES =  \
 Core/Lib/L9963E_lib/L9963E.c \
+Core/Lib/L9963E_lib/L9963E_drv.c \
 Core/Src/crc.c \
 Core/Src/gpio.c \
 Core/Src/main.c \

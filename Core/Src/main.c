@@ -109,56 +109,32 @@ int main(void) {
     MX_SPI1_Init();
     MX_CRC_Init();
     /* USER CODE BEGIN 2 */
-    /*
-  uint8_t data1[5] = {0xF9, 0xFF, 0xBF, 0x70, 0xC2};
-  uint8_t data2[5] = {0xFD, 0xCE, 0x3E, 0x1C, 0xC2};
-  uint8_t data3[5] = {0x01, 0x00, 0x08, 0x70, 0xC2};
-  uint8_t data4[5] = {0x64, 0x10, 0x08, 0x30, 0xE3};
-  uint8_t data5[5] = {0x47, 0x10, 0x8C, 0xF0, 0xC0};
-  uint8_t data6[5] = {0x0E, 0x80, 0x80, 0x78, 0x82};
-  uint8_t data7[5] = {0xBE, 0x54, 0x19, 0x64, 0xC2};
-  //uint8_t data[5] = {0xC2, 0x70, 0xBF, 0xFF, 0xF9};
-  volatile uint8_t crc = L9963E_crc_calc(data1);
-  crc = L9963E_crc_calc(data2);
-  crc = L9963E_crc_calc(data3);
-  crc = L9963E_crc_calc(data4);
-  crc = L9963E_crc_calc(data5);
-  crc = L9963E_crc_calc(data6);
-  crc = L9963E_crc_calc(data7);
-*/
 
-    L9963E_HandleTypeDef hl9;
-    L9963E_init(&hl9, &hspi1, SPI1_CS_GPIO_Port, SPI1_CS_Pin, TXEN_GPIO_Port, TXEN_Pin, BNE_GPIO_Port, BNE_Pin);
+    L9963E_HandleTypeDef h9l;
+    L9963E_init(&h9l,
+                &hspi1,
+                SPI1_CS_GPIO_Port,
+                SPI1_CS_Pin,
+                TXEN_GPIO_Port,
+                TXEN_Pin,
+                BNE_GPIO_Port,
+                BNE_Pin,
+                ISOFREQ_GPIO_Port,
+                ISOFREQ_Pin,
+                1);
+    L9963E_addressing_procedure(&h9l, 0b11, 0, 0, 1);
 
-    /*ERROR_UTILS_error_set(&error_h, 2, 0);
-  ERROR_UTILS_error_set(&error_h, 3, 0);*/
-    //HAL_UART_Transmit(&huart2, (uint8_t*)"error set\r\n", 11, 10);
+    L9963E_RegisterUnionTypeDef bal3_reg        = {.generic = 0};
+    L9963E_RegisterUnionTypeDef dev_gen_cfg_reg = {.generic = 0};
+
+    L9963E_DRV_reg_read(&(h9l.drv_handle), 0x1, DEV_GEN_CFG, &dev_gen_cfg_reg);
+    L9963E_DRV_reg_read(&(h9l.drv_handle), 0x1, Bal_3, &bal3_reg);
 
     /* USER CODE END 2 */
 
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
-    volatile uint8_t succeded = 0;
     while (1) {
-        uint8_t send_flag = GPIO_PIN_SET;
-        send_flag         = HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin);
-        if (send_flag == GPIO_PIN_RESET) {
-            // wait for the monitor to goo sleep: by default 32ms (T_SLEEP_00)
-            HAL_Delay(100);  // wait more then necessary
-            // send sboradcast message with chp_ID=first_address(1), isotx_en=1, iso_req_sel=0x00
-            L9963E_RegisterUnionTypeDef reg1 = {.DEV_GEN_CFG = {.chip_ID = 1U, .iso_freq_sel = 0U, .isotx_en_h = 1U}};
-            L9963E_RegisterUnionTypeDef reg2 = {.generic = 0};
-
-            L9963E_wakeup(&hl9);
-            // by default the wakup procedure nees 2 ms of time (T_WAKEUP)
-            HAL_Delay(3);
-
-            L9963E_reg_write(&hl9, 0, DEV_GEN_CFG, &reg1);
-            if (L9963E_reg_read(&hl9, 0x1, DEV_GEN_CFG, &reg1) == HAL_OK) {
-                succeded = 1;
-            }
-            send_flag = GPIO_PIN_RESET;
-        }
         /* USER CODE END WHILE */
 
         /* USER CODE BEGIN 3 */

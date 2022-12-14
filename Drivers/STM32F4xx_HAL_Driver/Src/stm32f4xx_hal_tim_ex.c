@@ -471,9 +471,8 @@ HAL_StatusTypeDef HAL_TIMEx_HallSensor_Start_DMA(TIM_HandleTypeDef *htim, uint32
     if ((channel_1_state == HAL_TIM_CHANNEL_STATE_BUSY) ||
         (complementary_channel_1_state == HAL_TIM_CHANNEL_STATE_BUSY)) {
         return HAL_BUSY;
-    } else if (
-        (channel_1_state == HAL_TIM_CHANNEL_STATE_READY) &&
-        (complementary_channel_1_state == HAL_TIM_CHANNEL_STATE_READY)) {
+    } else if ((channel_1_state == HAL_TIM_CHANNEL_STATE_READY) &&
+               (complementary_channel_1_state == HAL_TIM_CHANNEL_STATE_READY)) {
         if ((pData == NULL) && (Length > 0U)) {
             return HAL_ERROR;
         } else {
@@ -1231,11 +1230,10 @@ HAL_StatusTypeDef HAL_TIMEx_PWMN_Stop_IT(TIM_HandleTypeDef *htim, uint32_t Chann
   * @param  Length The length of data to be transferred from memory to TIM peripheral
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_TIMEx_PWMN_Start_DMA(
-    TIM_HandleTypeDef *htim,
-    uint32_t Channel,
-    uint32_t *pData,
-    uint16_t Length) {
+HAL_StatusTypeDef HAL_TIMEx_PWMN_Start_DMA(TIM_HandleTypeDef *htim,
+                                           uint32_t Channel,
+                                           uint32_t *pData,
+                                           uint16_t Length) {
     HAL_StatusTypeDef status = HAL_OK;
     uint32_t tmpsmcr;
 
@@ -1650,10 +1648,9 @@ HAL_StatusTypeDef HAL_TIMEx_OnePulseN_Stop_IT(TIM_HandleTypeDef *htim, uint32_t 
   *            @arg TIM_COMMUTATION_SOFTWARE:  Commutation source is set by software using the COMG bit
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_TIMEx_ConfigCommutEvent(
-    TIM_HandleTypeDef *htim,
-    uint32_t InputTrigger,
-    uint32_t CommutationSource) {
+HAL_StatusTypeDef HAL_TIMEx_ConfigCommutEvent(TIM_HandleTypeDef *htim,
+                                              uint32_t InputTrigger,
+                                              uint32_t CommutationSource) {
     /* Check the parameters */
     assert_param(IS_TIM_COMMUTATION_EVENT_INSTANCE(htim->Instance));
     assert_param(IS_TIM_INTERNAL_TRIGGEREVENT_SELECTION(InputTrigger));
@@ -1706,10 +1703,9 @@ HAL_StatusTypeDef HAL_TIMEx_ConfigCommutEvent(
   *            @arg TIM_COMMUTATION_SOFTWARE:  Commutation source is set by software using the COMG bit
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_TIMEx_ConfigCommutEvent_IT(
-    TIM_HandleTypeDef *htim,
-    uint32_t InputTrigger,
-    uint32_t CommutationSource) {
+HAL_StatusTypeDef HAL_TIMEx_ConfigCommutEvent_IT(TIM_HandleTypeDef *htim,
+                                                 uint32_t InputTrigger,
+                                                 uint32_t CommutationSource) {
     /* Check the parameters */
     assert_param(IS_TIM_COMMUTATION_EVENT_INSTANCE(htim->Instance));
     assert_param(IS_TIM_INTERNAL_TRIGGEREVENT_SELECTION(InputTrigger));
@@ -1763,10 +1759,9 @@ HAL_StatusTypeDef HAL_TIMEx_ConfigCommutEvent_IT(
   *            @arg TIM_COMMUTATION_SOFTWARE:  Commutation source is set by software using the COMG bit
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_TIMEx_ConfigCommutEvent_DMA(
-    TIM_HandleTypeDef *htim,
-    uint32_t InputTrigger,
-    uint32_t CommutationSource) {
+HAL_StatusTypeDef HAL_TIMEx_ConfigCommutEvent_DMA(TIM_HandleTypeDef *htim,
+                                                  uint32_t InputTrigger,
+                                                  uint32_t CommutationSource) {
     /* Check the parameters */
     assert_param(IS_TIM_COMMUTATION_EVENT_INSTANCE(htim->Instance));
     assert_param(IS_TIM_INTERNAL_TRIGGEREVENT_SELECTION(InputTrigger));
@@ -1812,9 +1807,8 @@ HAL_StatusTypeDef HAL_TIMEx_ConfigCommutEvent_DMA(
   *         mode.
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_TIMEx_MasterConfigSynchronization(
-    TIM_HandleTypeDef *htim,
-    TIM_MasterConfigTypeDef *sMasterConfig) {
+HAL_StatusTypeDef HAL_TIMEx_MasterConfigSynchronization(TIM_HandleTypeDef *htim,
+                                                        TIM_MasterConfigTypeDef *sMasterConfig) {
     uint32_t tmpcr2;
     uint32_t tmpsmcr;
 
@@ -1872,9 +1866,8 @@ HAL_StatusTypeDef HAL_TIMEx_MasterConfigSynchronization(
   *         interrupt can be enabled by calling the @ref __HAL_TIM_ENABLE_IT macro.
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_TIMEx_ConfigBreakDeadTime(
-    TIM_HandleTypeDef *htim,
-    TIM_BreakDeadTimeConfigTypeDef *sBreakDeadTimeConfig) {
+HAL_StatusTypeDef HAL_TIMEx_ConfigBreakDeadTime(TIM_HandleTypeDef *htim,
+                                                TIM_BreakDeadTimeConfigTypeDef *sBreakDeadTimeConfig) {
     /* Keep this variable initialized to 0 as it is used to configure BDTR register */
     uint32_t tmpbdtr = 0U;
 
@@ -1957,10 +1950,9 @@ HAL_StatusTypeDef HAL_TIMEx_RemapConfig(TIM_HandleTypeDef *htim, uint32_t Remap)
     if ((Remap & LPTIM_REMAP_MASK) == LPTIM_REMAP_MASK) {
         /* Connect TIMx internal trigger to LPTIM1 output */
         __HAL_RCC_LPTIM1_CLK_ENABLE();
-        MODIFY_REG(
-            LPTIM1->OR,
-            (LPTIM_OR_TIM1_ITR2_RMP | LPTIM_OR_TIM5_ITR1_RMP | LPTIM_OR_TIM9_ITR1_RMP),
-            Remap & ~(LPTIM_REMAP_MASK));
+        MODIFY_REG(LPTIM1->OR,
+                   (LPTIM_OR_TIM1_ITR2_RMP | LPTIM_OR_TIM5_ITR1_RMP | LPTIM_OR_TIM9_ITR1_RMP),
+                   Remap & ~(LPTIM_REMAP_MASK));
     } else {
         /* Set the Timer remapping configuration */
         WRITE_REG(htim->Instance->OR, Remap);

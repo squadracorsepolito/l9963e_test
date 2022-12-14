@@ -300,12 +300,11 @@ static void UART_DMARxOnlyAbortCallback(DMA_HandleTypeDef *hdma);
 static HAL_StatusTypeDef UART_Transmit_IT(UART_HandleTypeDef *huart);
 static HAL_StatusTypeDef UART_EndTransmit_IT(UART_HandleTypeDef *huart);
 static HAL_StatusTypeDef UART_Receive_IT(UART_HandleTypeDef *huart);
-static HAL_StatusTypeDef UART_WaitOnFlagUntilTimeout(
-    UART_HandleTypeDef *huart,
-    uint32_t Flag,
-    FlagStatus Status,
-    uint32_t Tickstart,
-    uint32_t Timeout);
+static HAL_StatusTypeDef UART_WaitOnFlagUntilTimeout(UART_HandleTypeDef *huart,
+                                                     uint32_t Flag,
+                                                     FlagStatus Status,
+                                                     uint32_t Tickstart,
+                                                     uint32_t Timeout);
 static void UART_SetConfig(UART_HandleTypeDef *huart);
 
 /**
@@ -731,10 +730,9 @@ __weak void HAL_UART_MspDeInit(UART_HandleTypeDef *huart) {
   * @param  pCallback pointer to the Callback function
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_UART_RegisterCallback(
-    UART_HandleTypeDef *huart,
-    HAL_UART_CallbackIDTypeDef CallbackID,
-    pUART_CallbackTypeDef pCallback) {
+HAL_StatusTypeDef HAL_UART_RegisterCallback(UART_HandleTypeDef *huart,
+                                            HAL_UART_CallbackIDTypeDef CallbackID,
+                                            pUART_CallbackTypeDef pCallback) {
     HAL_StatusTypeDef status = HAL_OK;
 
     if (pCallback == NULL) {
@@ -1518,12 +1516,11 @@ HAL_StatusTypeDef HAL_UART_DMAStop(UART_HandleTypeDef *huart) {
   * @param Timeout Timeout duration expressed in ms (covers the whole reception sequence).
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_UARTEx_ReceiveToIdle(
-    UART_HandleTypeDef *huart,
-    uint8_t *pData,
-    uint16_t Size,
-    uint16_t *RxLen,
-    uint32_t Timeout) {
+HAL_StatusTypeDef HAL_UARTEx_ReceiveToIdle(UART_HandleTypeDef *huart,
+                                           uint8_t *pData,
+                                           uint16_t Size,
+                                           uint16_t *RxLen,
+                                           uint32_t Timeout) {
     uint8_t *pdata8bits;
     uint16_t *pdata16bits;
     uint32_t tickstart;
@@ -2909,12 +2906,11 @@ static void UART_DMAError(DMA_HandleTypeDef *hdma) {
   * @param  Timeout Timeout duration
   * @retval HAL status
   */
-static HAL_StatusTypeDef UART_WaitOnFlagUntilTimeout(
-    UART_HandleTypeDef *huart,
-    uint32_t Flag,
-    FlagStatus Status,
-    uint32_t Tickstart,
-    uint32_t Timeout) {
+static HAL_StatusTypeDef UART_WaitOnFlagUntilTimeout(UART_HandleTypeDef *huart,
+                                                     uint32_t Flag,
+                                                     FlagStatus Status,
+                                                     uint32_t Tickstart,
+                                                     uint32_t Timeout) {
     /* Wait until flag is set */
     while ((__HAL_UART_GET_FLAG(huart, Flag) ? SET : RESET) == Status) {
         /* Check for the Timeout */
@@ -3394,10 +3390,9 @@ static void UART_SetConfig(UART_HandleTypeDef *huart) {
      Set OVER8 bit according to huart->Init.OverSampling value */
 
     tmpreg = (uint32_t)huart->Init.WordLength | huart->Init.Parity | huart->Init.Mode | huart->Init.OverSampling;
-    MODIFY_REG(
-        huart->Instance->CR1,
-        (uint32_t)(USART_CR1_M | USART_CR1_PCE | USART_CR1_PS | USART_CR1_TE | USART_CR1_RE | USART_CR1_OVER8),
-        tmpreg);
+    MODIFY_REG(huart->Instance->CR1,
+               (uint32_t)(USART_CR1_M | USART_CR1_PCE | USART_CR1_PS | USART_CR1_TE | USART_CR1_RE | USART_CR1_OVER8),
+               tmpreg);
 
     /*-------------------------- USART CR3 Configuration -----------------------*/
     /* Configure the UART HFC: Set CTSE and RTSE bits according to huart->Init.HwFlowCtl value */

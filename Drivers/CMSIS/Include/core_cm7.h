@@ -1839,9 +1839,8 @@ __STATIC_INLINE void __NVIC_SetPriorityGrouping(uint32_t PriorityGroup) {
 
     reg_value = SCB->AIRCR;                                                     /* read old register configuration    */
     reg_value &= ~((uint32_t)(SCB_AIRCR_VECTKEY_Msk | SCB_AIRCR_PRIGROUP_Msk)); /* clear bits to change               */
-    reg_value =
-        (reg_value | ((uint32_t)0x5FAUL << SCB_AIRCR_VECTKEY_Pos) |
-         (PriorityGroupTmp << SCB_AIRCR_PRIGROUP_Pos)); /* Insert write key and priority group */
+    reg_value  = (reg_value | ((uint32_t)0x5FAUL << SCB_AIRCR_VECTKEY_Pos) |
+                 (PriorityGroupTmp << SCB_AIRCR_PRIGROUP_Pos)); /* Insert write key and priority group */
     SCB->AIRCR = reg_value;
 }
 
@@ -1876,8 +1875,9 @@ __STATIC_INLINE void __NVIC_EnableIRQ(IRQn_Type IRQn) {
  */
 __STATIC_INLINE uint32_t __NVIC_GetEnableIRQ(IRQn_Type IRQn) {
     if ((int32_t)(IRQn) >= 0) {
-        return ((
-            uint32_t)(((NVIC->ISER[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL));
+        return ((uint32_t)(((NVIC->ISER[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL)
+                               ? 1UL
+                               : 0UL));
     } else {
         return (0U);
     }
@@ -1907,8 +1907,9 @@ __STATIC_INLINE void __NVIC_DisableIRQ(IRQn_Type IRQn) {
  */
 __STATIC_INLINE uint32_t __NVIC_GetPendingIRQ(IRQn_Type IRQn) {
     if ((int32_t)(IRQn) >= 0) {
-        return ((
-            uint32_t)(((NVIC->ISPR[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL));
+        return ((uint32_t)(((NVIC->ISPR[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL)
+                               ? 1UL
+                               : 0UL));
     } else {
         return (0U);
     }
@@ -1948,8 +1949,9 @@ __STATIC_INLINE void __NVIC_ClearPendingIRQ(IRQn_Type IRQn) {
  */
 __STATIC_INLINE uint32_t __NVIC_GetActive(IRQn_Type IRQn) {
     if ((int32_t)(IRQn) >= 0) {
-        return ((
-            uint32_t)(((NVIC->IABR[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL));
+        return ((uint32_t)(((NVIC->IABR[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL)
+                               ? 1UL
+                               : 0UL));
     } else {
         return (0U);
     }
@@ -2013,9 +2015,8 @@ __STATIC_INLINE uint32_t NVIC_EncodePriority(uint32_t PriorityGroup, uint32_t Pr
                               ? (uint32_t)0UL
                               : (uint32_t)((PriorityGroupTmp - 7UL) + (uint32_t)(__NVIC_PRIO_BITS));
 
-    return (
-        ((PreemptPriority & (uint32_t)((1UL << (PreemptPriorityBits)) - 1UL)) << SubPriorityBits) |
-        ((SubPriority & (uint32_t)((1UL << (SubPriorityBits)) - 1UL))));
+    return (((PreemptPriority & (uint32_t)((1UL << (PreemptPriorityBits)) - 1UL)) << SubPriorityBits) |
+            ((SubPriority & (uint32_t)((1UL << (SubPriorityBits)) - 1UL))));
 }
 
 /**
@@ -2029,11 +2030,10 @@ __STATIC_INLINE uint32_t NVIC_EncodePriority(uint32_t PriorityGroup, uint32_t Pr
   \param [out] pPreemptPriority  Preemptive priority value (starting from 0).
   \param [out]     pSubPriority  Subpriority value (starting from 0).
  */
-__STATIC_INLINE void NVIC_DecodePriority(
-    uint32_t Priority,
-    uint32_t PriorityGroup,
-    uint32_t *const pPreemptPriority,
-    uint32_t *const pSubPriority) {
+__STATIC_INLINE void NVIC_DecodePriority(uint32_t Priority,
+                                         uint32_t PriorityGroup,
+                                         uint32_t *const pPreemptPriority,
+                                         uint32_t *const pSubPriority) {
     uint32_t PriorityGroupTmp = (PriorityGroup & (uint32_t)0x07UL); /* only values 0..7 are used          */
     uint32_t PreemptPriorityBits;
     uint32_t SubPriorityBits;
@@ -2083,9 +2083,9 @@ __STATIC_INLINE uint32_t __NVIC_GetVector(IRQn_Type IRQn) {
 __NO_RETURN __STATIC_INLINE void __NVIC_SystemReset(void) {
     __DSB(); /* Ensure all outstanding memory accesses included
                                                                        buffered write are completed before reset */
-    SCB->AIRCR =
-        (uint32_t)((0x5FAUL << SCB_AIRCR_VECTKEY_Pos) | (SCB->AIRCR & SCB_AIRCR_PRIGROUP_Msk) | SCB_AIRCR_SYSRESETREQ_Msk); /* Keep priority group unchanged */
-    __DSB(); /* Ensure completion of memory access */
+    SCB->AIRCR = (uint32_t)((0x5FAUL << SCB_AIRCR_VECTKEY_Pos) | (SCB->AIRCR & SCB_AIRCR_PRIGROUP_Msk) |
+                            SCB_AIRCR_SYSRESETREQ_Msk); /* Keep priority group unchanged */
+    __DSB();                                            /* Ensure completion of memory access */
 
     for (;;) /* wait until reset */
     {
@@ -2251,9 +2251,8 @@ __STATIC_INLINE void SCB_DisableDCache(void) {
     do {
         ways = (uint32_t)(CCSIDR_WAYS(ccsidr));
         do {
-            SCB->DCCISW =
-                (((sets << SCB_DCCISW_SET_Pos) & SCB_DCCISW_SET_Msk) |
-                 ((ways << SCB_DCCISW_WAY_Pos) & SCB_DCCISW_WAY_Msk));
+            SCB->DCCISW = (((sets << SCB_DCCISW_SET_Pos) & SCB_DCCISW_SET_Msk) |
+                           ((ways << SCB_DCCISW_WAY_Pos) & SCB_DCCISW_WAY_Msk));
 #if defined(__CC_ARM)
             __schedule_barrier();
 #endif
@@ -2351,9 +2350,8 @@ __STATIC_INLINE void SCB_CleanInvalidateDCache(void) {
     do {
         ways = (uint32_t)(CCSIDR_WAYS(ccsidr));
         do {
-            SCB->DCCISW =
-                (((sets << SCB_DCCISW_SET_Pos) & SCB_DCCISW_SET_Msk) |
-                 ((ways << SCB_DCCISW_WAY_Pos) & SCB_DCCISW_WAY_Msk));
+            SCB->DCCISW = (((sets << SCB_DCCISW_SET_Pos) & SCB_DCCISW_SET_Msk) |
+                           ((ways << SCB_DCCISW_WAY_Pos) & SCB_DCCISW_WAY_Msk));
 #if defined(__CC_ARM)
             __schedule_barrier();
 #endif
